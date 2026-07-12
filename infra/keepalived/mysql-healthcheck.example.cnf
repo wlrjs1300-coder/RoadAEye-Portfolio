@@ -1,0 +1,12 @@
+# mysql-healthcheck.example.cnf
+#
+# MySQL 헬스체크용 옵션 파일 예시
+# 실제 배포 시 <MYSQL_HEALTHCHECK_PASSWORD>를 실제 비밀번호로 교체하세요.
+#
+# 경고: 실제 비밀번호를 입력한 파일은 저장소에 커밋하지 마세요.
+# 파일 권한은 반드시 600으로 설정하세요.
+#   sudo chmod 600 /etc/keepalived/mysql-healthcheck.cnf
+
+[client]
+user=healthcheck
+password=<MYSQL_HEALTHCHECK_PASSWORD>

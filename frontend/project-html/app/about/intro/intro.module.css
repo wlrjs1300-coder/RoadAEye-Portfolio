@@ -1,0 +1,218 @@
+.container {
+  max-width: 1280px;
+  min-height: calc(100vh - var(--header-height));
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  color: var(--text-color, #111827);
+}
+
+/* 상단 히어로 영역 */
+.heroSection {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.mainTitle {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin-bottom: 6px;
+  color: var(--text, #4b5563);
+}
+
+.red {
+  color: var(--red, #e11d48); /* Road A Eye 고유 포인트 레도 */
+}
+
+.slogan {
+  font-size: 15px;
+  color: var(--text-muted, #4b5563);
+  font-weight: 500;
+}
+
+/* 본문 레이아웃 그리드 */
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+/* 카드 기본 스타일 (비밀번호 변경/로그인 카드와 통일) */
+.card {
+  background-color: var(--bg-sub, #ffffff);
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+/* 가로를 꽉 채우는 카드 스타일 */
+.cardFull {
+  grid-column: span 2;
+  background-color: var(--bg-sub, #ffffff);
+  padding: 18px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.cardTitle {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+  border-left: 4px solid var(--red, #e11d48); /* 타이틀 강조선 */
+  padding-left: 12px;
+}
+
+.cardText {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--text-muted, #374151);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.cardText strong {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+/* 기능 소개 3열 레이아웃 */
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.featureItem {
+  background-color: var(--bg-sub, #ffffff); 
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.featureItem h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--red, #e11d48);
+  margin-bottom: 8px;
+}
+
+.featureItem p {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-muted, #6b7280);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 비전 섹션 스타일 */
+.visionSection {
+  text-align: center;
+  padding: 6px 0;
+}
+
+.visionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text, #4b5563);
+  margin-bottom: 6px;
+}
+
+.visionText {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* 반응형 모바일 대응 */
+@media (max-width: 768px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+  .cardFull {
+    grid-column: span 1;
+  }
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+  .cardText br {
+    display: none;
+  }
+}
+
+
+@media (min-width: 1440px) and (min-height: 850px) {
+  .container {
+    max-width: 1320px;
+    padding-top: 42px;
+  }
+
+  .heroSection {
+    margin-bottom: 24px;
+  }
+
+  .mainTitle {
+    font-size: 42px;
+    margin-bottom: 10px;
+  }
+
+  .slogan {
+    font-size: 17px;
+  }
+
+  .contentGrid {
+    gap: 18px;
+  }
+
+  .card,
+  .cardFull {
+    padding: 24px 26px;
+  }
+
+  .cardTitle {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .cardText {
+    font-size: 16.5px;
+    line-height: 1.65;
+  }
+
+  .featureGrid {
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .featureItem {
+    min-height: 108px;
+    padding: 18px 20px;
+  }
+
+  .featureItem h3 {
+    font-size: 16.5px;
+  }
+
+  .featureItem p {
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  .visionSection {
+    padding: 14px 0;
+  }
+
+  .visionTitle {
+    font-size: 21px;
+  }
+
+  .visionText {
+    font-size: 15.5px;
+  }
+}

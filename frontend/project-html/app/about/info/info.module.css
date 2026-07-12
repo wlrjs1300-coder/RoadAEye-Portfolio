@@ -1,0 +1,182 @@
+.infoContainer {
+  max-width: 1280px;
+  min-height: calc(100vh - var(--header-height));
+  margin: 0 auto;
+  padding: 18px 24px 18px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 32px; /* 섹션 간 간격 확대 */
+  color: var(--text);
+}
+
+.infoHeader {
+  text-align: center;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--red);
+  margin-bottom: 8px;
+  margin-top: 15px;
+}
+
+.infoHeader h1 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.infoHeader p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 4px 0;
+}
+
+.infoSection {
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-color);
+  border-radius: 16px; /* 모서리 둥글게 */
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* 그림자 추가 */
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text);
+  border-left: 4px solid var(--red);
+  padding-left: 14px;
+}
+
+/* 시스템 아키텍처 */
+.archFlow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.archNode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.archNodeBox {
+  background: var(--bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px 12px;
+  min-width: 140px;
+  
+  /* 중앙 정렬 및 세로 배치 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 4px; /* 볼드 글씨와 일반 글씨 사이 간격 */
+}
+
+.archNodeBox strong {
+  display: block;
+  font-size: 14px; /* 메인 텍스트 */
+  font-weight: 700;
+  color: var(--text);
+}
+
+.archNodeBox span {
+  display: block;
+  font-size: 12px; /* 폰트 크기 축소 */
+  color: var(--text-muted); /* muted 컬러 적용 */
+  line-height: 1.3;
+}
+
+/* 아키텍처 하단 라벨 (실시간 스트림 등) */
+.archNodeLabel {
+  font-size: 11px;
+  color: var(--text-muted); /* muted 컬러 적용 */
+  font-weight: 600;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* 기술 스택 카드 */
+.techGridPlaceholder {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.dummyCard {
+  background: var(--bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 중앙 */
+  align-items: center;     /* 가로 중앙 */
+  text-align: center;
+  gap: 8px;
+}
+
+.dummyCard h3 {
+  font-size: 16px;
+  color: var(--red);
+  margin-bottom: 4px;
+}
+
+.dummyCard p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* 팀원 카드 */
+.teamGrid5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.dummyMemberCard {
+  background: var(--bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.dummyMemberCard strong {
+  font-size: 13px;
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.dummyMemberCard p {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.dummyMemberCard span {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+  .teamGrid5 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .techGridPlaceholder, .teamGrid5 { grid-template-columns: 1fr; }
+}

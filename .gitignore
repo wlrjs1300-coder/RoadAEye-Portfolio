@@ -1,0 +1,70 @@
+# ============================================================
+# RoadAEye Monorepo — Root .gitignore
+# ============================================================
+
+# --- 환경 변수 및 민감 정보 ---
+.env
+.env.*
+!.env.example
+
+# --- 로그 및 임시 파일 ---
+*.log
+nohup.out
+*.backup-*
+*.bak
+*.bak-*
+*.tmp
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# --- Node.js / Next.js ---
+node_modules/
+.next/
+dist/
+build/
+coverage/
+tsconfig.tsbuildinfo
+
+# --- 런타임 생성 디렉터리 ---
+uploads/
+results/
+captures/
+
+# --- AI 도구 설정 ---
+.claude/
+.codex/
+.copilot/
+.gemini/
+CLAUDE.md
+AGENTS.md
+
+# --- 에디터 ---
+.vscode/
+.idea/
+
+# --- 인증서 및 키 ---
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# --- 데이터베이스 ---
+*.sql
+*.dump
+*.sqlite
+*.sqlite3
+*.db
+
+# --- ML 모델 가중치 (정책 미결정, 우선 제외) ---
+*.pt
+*.pth
+*.keras
+*.h5
+*.tflite
+*.onnx

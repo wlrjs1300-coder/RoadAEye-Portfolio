@@ -1,0 +1,434 @@
+/* 감지 기록 페이지 — 자연 높이 레이아웃 */
+
+.wrapper {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px 28px;
+  color: var(--text);
+  box-sizing: border-box;
+}
+
+.header {
+  width: 100%;
+  margin-bottom: 14px;
+  border-bottom: 2px solid #e11d48;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+}
+
+.header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.header p {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+  margin-bottom: 6px;
+}
+
+.errorBox {
+  flex-shrink: 0;
+  padding: 8px 12px;
+  background: rgba(220, 38, 38, 0.1);
+  border-left: 3px solid #dc2626;
+  color: #b91c1c;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+/* 필터 줄 */
+.filterRow {
+  flex-shrink: 0;
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  padding: 10px 14px;
+  background: var(--bg-sub);
+  border-radius: 8px;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.filterGroup label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.filterGroup select {
+  padding: 6px 10px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 13px;
+  min-width: 110px;
+}
+
+.refreshBtn {
+  padding: 6px 12px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.refreshBtn:hover:not(:disabled) {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.refreshBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.totalText {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--text-muted);
+  align-self: center;
+}
+
+/* 테이블 영역 — 페이지네이션으로 행 수가 제한되므로 자연 높이 */
+.tableArea {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-card);
+}
+
+.emptyBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: var(--text-muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* 테이블 */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* 컬럼 폭 고정 — 페이지마다 행 내용이 달라져도 항상 동일한 폭 유지 */
+.table th:nth-child(1), .table td:nth-child(1) { width: 22%; }  /* 시각 */
+.table th:nth-child(2), .table td:nth-child(2) { width: 22%; }  /* CCTV */
+.table th:nth-child(3), .table td:nth-child(3) { width: 13%; }  /* 금지 객체 */
+.table th:nth-child(4), .table td:nth-child(4) { width: 10%; }  /* 신뢰도 */
+.table th:nth-child(5), .table td:nth-child(5) { width: 13%; }  /* 상태 */
+.table th:nth-child(6), .table td:nth-child(6) { width: 20%; }  /* 처리 */
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--bg-sub);
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1;
+}
+
+.table tbody td {
+  padding: 9px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.row {
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.row:hover {
+  background: var(--bg-sub);
+}
+
+.cellTruncate {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 상태 뱃지 */
+.statusBadge {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.status_UNREAD    { background: rgba(225, 29, 72, 0.15);   color: #e11d48; }
+.status_CONFIRMED { background: rgba(34, 197, 94, 0.15);   color: #16a34a; }
+.status_DISMISSED { background: rgba(150, 150, 150, 0.18); color: var(--text-muted); }
+
+/* 처리 버튼 */
+.rowActions {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.smallBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background: transparent;
+}
+
+.confirmBtn  { border-color: #16a34a; color: #16a34a; }
+.confirmBtn:hover:not(:disabled)  { background: #16a34a; color: white; }
+.dismissBtn  { border-color: #888; color: #888; }
+.dismissBtn:hover:not(:disabled)  { background: #888; color: white; }
+
+/* 현재 상태와 같은 버튼은 비활성화 — 중복 클릭(모달 재오픈) 방지 */
+.smallBtn:disabled { cursor: default; opacity: 0.55; }
+
+.handledText { color: var(--text-muted); font-size: 13px; }
+
+/* 페이지네이션 */
+.pagination {
+  flex-shrink: 0;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.pagination button {
+  min-width: 30px;
+  padding: 5px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text);
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pageActive {
+  background: var(--red) !important;
+  color: white !important;
+  border-color: var(--red) !important;
+}
+
+.pageDots {
+  padding: 5px 4px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* 상세 모달 */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modalContent {
+  background: var(--bg);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 720px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.45);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--bg-sub);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modalTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.modalTitleIcon { color: var(--red); }
+
+.modalClose {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.modalClose:hover {
+  color: var(--red);
+  background: rgba(225, 29, 72, 0.08);
+}
+
+.modalBody {
+  padding: 18px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modalImage {
+  width: 100%;
+  max-height: 340px;
+  object-fit: contain;
+  background: #000;
+  border-radius: 8px;
+}
+
+.noImage {
+  padding: 50px 0;
+  text-align: center;
+  color: var(--text-muted);
+  background: #1a1a1a;
+  border-radius: 8px;
+}
+
+.metaList {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  row-gap: 8px;
+  column-gap: 12px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.metaList dt { color: var(--text-muted); }
+.metaList dd { color: var(--text); margin: 0; }
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 20px;
+  background: var(--bg-sub);
+  border-top: 1px solid var(--border-color);
+}
+
+
+@media (min-width: 1440px) and (min-height: 850px) {
+  .wrapper {
+    max-width: 1320px;
+    padding-top: 40px;
+  }
+
+  .header {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+  }
+
+  .header h2 {
+    font-size: 26px;
+    margin-bottom: 4px;
+  }
+
+  .header p {
+    font-size: 15px;
+  }
+
+  .filterRow {
+    margin-bottom: 12px;
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .filterGroup label {
+    font-size: 12px;
+  }
+
+  .filterGroup select,
+  .refreshBtn,
+  .totalText {
+    font-size: 14px;
+  }
+
+  .filterGroup select {
+    padding: 8px 12px;
+  }
+
+  .refreshBtn {
+    padding: 8px 14px;
+  }
+
+  .emptyBox {
+    height: 100%;
+    font-size: 16px;
+  }
+
+  .table thead th {
+    padding: 13px 14px;
+    font-size: 13.5px;
+  }
+
+  .table tbody td {
+    padding: 12px 14px;
+    font-size: 14.5px;
+  }
+}
+
+/* 현재 적용된 상태 강조 */
+.activeBtnConfirm { background: #16a34a !important; color: white !important; }
+.activeBtnDismiss { background: #e11d48 !important; color: white !important; border-color: #e11d48 !important; }

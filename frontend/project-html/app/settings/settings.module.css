@@ -1,0 +1,242 @@
+.container {
+  max-width: 1400px;
+  margin: 32px auto;
+  padding: 0 28px;
+  box-sizing: border-box;
+  color: var(--text);
+}
+
+.header {
+  border-bottom: 2px solid #e11d48;
+  padding-bottom: 12px;
+  margin-bottom: 22px;
+}
+
+.header h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.headerIcon {
+  color: #e11d48;
+}
+
+.header p {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* 설정 섹션 카드 */
+.settingsGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.settingsGridSingle {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 560px;
+  gap: 14px;
+  align-items: start;
+}
+
+.section {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--bg-card);
+  padding: 22px 26px;
+  margin-bottom: 0;
+}
+
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.sectionTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.adminOnlyBadge {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: rgba(225, 29, 72, 0.1);
+  border: 1px solid rgba(225, 29, 72, 0.28);
+  color: #e11d48;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.sectionDesc {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+}
+
+/* 설정 항목 행 */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 62px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.rowLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rowTitle {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.rowSub {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* 토글 스위치 */
+.toggle {
+  flex-shrink: 0;
+  width: 52px;
+  height: 28px;
+  border-radius: 14px;
+  border: none;
+  background: var(--border-color);
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.toggleOn {
+  background: #e11d48;
+}
+
+.toggle:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.toggleKnob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.toggleOn .toggleKnob {
+  transform: translateX(24px);
+}
+
+.note {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 24px;
+}
+
+/* 숫자 입력 */
+.numInput {
+  width: 76px;
+  height: 30px;
+  padding: 0 8px;
+  background: var(--bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  text-align: right;
+  flex-shrink: 0;
+  transition: border-color 0.15s;
+}
+
+.numInput:focus { outline: none; border-color: #e11d48; }
+
+.numRow { display: flex; align-items: center; gap: 6px; }
+.unit   { font-size: 13px; color: var(--text-muted); white-space: nowrap; }
+
+/* 시스템 설정 하단 */
+.cfgFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+.cfgMeta {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.saveBtn {
+  padding: 10px 24px;
+  background: #e11d48;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.saveBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+.saveBtn:hover:not(:disabled) { opacity: 0.88; }
+
+/* 인라인 에러/성공 박스 */
+.cfgErrorBox {
+  background: rgba(220, 38, 38, 0.08);
+  border-left: 3px solid #dc2626;
+  color: #b91c1c;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.cfgNoticeBox {
+  background: rgba(34, 197, 94, 0.08);
+  border-left: 3px solid #22c55e;
+  color: #16a34a;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 860px) {
+  .container { margin: 18px auto; }
+  .settingsGrid { grid-template-columns: 1fr; }
+}

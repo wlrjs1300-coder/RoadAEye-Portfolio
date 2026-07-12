@@ -1,0 +1,750 @@
+/* ===== ROAD A EYE - 3주차 중간 보고 공통 스타일 ===== */
+/* 2주차 PDF 디자인 톤 유지: 연한 파란 배경, 물결 장식, AEYE 로고 */
+
+/* ---------- 슬라이드 기본 ---------- */
+.slide {
+  position: relative;
+  width: 1440px;
+  height: 810px;
+  background: #EBF0F5;
+  overflow: hidden;
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  color: #1a1a1a;
+  page-break-after: always;
+  margin: 0 auto 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+
+/* ---------- 로고 & 조 표시 ---------- */
+.logo {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  z-index: 10;
+}
+
+.logoA { color: #c0392b; }
+.logoEYE { color: #1a1a1a; }
+
+.teamBadge {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  font-size: 18px;
+  color: #8BA4B8;
+  font-weight: 500;
+  z-index: 10;
+}
+
+/* ---------- 페이지 번호 ---------- */
+.pageNumber {
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+  font-size: 14px;
+  color: #8BA4B8;
+}
+
+/* ---------- 챕터 뱃지 ---------- */
+.chapterBadge {
+  display: inline-block;
+  background: #8BA4B8;
+  color: #fff;
+  padding: 6px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+/* ---------- 제목 ---------- */
+.slideTitle {
+  font-size: 42px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #1a1a1a;
+}
+
+.slideSubtitle {
+  font-size: 18px;
+  text-align: center;
+  color: #555;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* ---------- 카드 ---------- */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #dde4eb;
+}
+
+.cardTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #2c3e50;
+}
+
+/* ---------- 그리드 레이아웃 ---------- */
+.gridTwo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 0 60px;
+}
+
+
+/* ---------- 프로젝트 개요 전용: 발표 가독성 강화 ---------- */
+.overviewGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 34px;
+  width: 100%;
+  padding: 0 28px;
+  box-sizing: border-box;
+}
+
+.overviewCard {
+  min-height: 365px;
+  padding: 28px 34px;
+  border-radius: 20px;
+  border: 2px solid #d5e0e9;
+  box-shadow: 0 8px 24px rgba(43, 72, 98, 0.08);
+}
+
+.overviewLabel {
+  background: #8BA4B8;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 800;
+  font-size: 21px;
+  letter-spacing: 0.02em;
+}
+
+.overviewTitle {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #263f52;
+}
+
+.overviewList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.overviewList li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  line-height: 1.48;
+  color: #263238;
+  font-weight: 600;
+}
+
+.overviewList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 9px;
+  height: 9px;
+  background: #5B8CAE;
+  border-radius: 50%;
+}
+
+.purposeList li {
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+.overviewConclusion {
+  font-size: 18px;
+  line-height: 1.45;
+  color: #405060;
+  margin: 12px 0 0;
+  font-weight: 700;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: #f5f8fb;
+  border: 1px solid #dce7ef;
+}
+
+.gridThree {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  padding: 0 60px;
+}
+
+.gridFour {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 0 60px;
+}
+
+.gridFive {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 0 60px;
+}
+
+/* ---------- 컨텐츠 영역 ---------- */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 80px 60px 60px;
+  box-sizing: border-box;
+}
+
+.contentTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 60px 40px;
+  box-sizing: border-box;
+}
+
+/* ---------- 테이블 ---------- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.table th {
+  background: #5B8CAE;
+  color: #fff;
+  padding: 12px 16px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #dde4eb;
+  text-align: center;
+}
+
+.table tr:nth-child(even) td {
+  background: #f5f8fa;
+}
+
+/* ---------- 불릿 리스트 ---------- */
+.bulletList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bulletList li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.bulletList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  background: #5B8CAE;
+  border-radius: 50%;
+}
+
+/* ---------- 하이라이트 ---------- */
+.highlight {
+  background: linear-gradient(transparent 60%, #B3D4E8 60%);
+  padding: 0 4px;
+}
+
+.highlightBlue {
+  background: linear-gradient(transparent 60%, #B3D4E8 60%);
+  padding: 0 4px;
+}
+
+/* ---------- 태그/뱃지 ---------- */
+.tag {
+  display: inline-block;
+  background: #5B8CAE;
+  color: #fff;
+  padding: 4px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 2px;
+}
+
+.tagGreen {
+  background: #27ae60;
+}
+
+.tagOrange {
+  background: #e67e22;
+}
+
+.tagRed {
+  background: #c0392b;
+}
+
+/* ---------- 물결 장식 (SVG 배경) ---------- */
+.waveDecoration {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 400px;
+  height: 300px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.waveDecorationRight {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---------- 원형 장식 (비활성) ---------- */
+.circleDecoration { display: none; }
+.circleLg { display: none; }
+.circleSm { display: none; }
+.dotPattern { display: none; }
+
+/* ---------- 타이틀 슬라이드 전용 ---------- */
+.titleSlide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 80px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.titleSlide .projectBadge {
+  display: inline-block;
+  background: #8BA4B8;
+  color: #fff;
+  padding: 8px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  width: fit-content;
+}
+
+.titleSlide .mainTitle {
+  font-size: 64px;
+  font-weight: 900;
+  color: #2c3e50;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.titleSlide .mainSubtitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.4;
+  margin-bottom: 60px;
+}
+
+.memberInfo {
+  position: absolute;
+  bottom: 80px;
+  right: 120px;
+  text-align: right;
+  z-index: 10;
+}
+
+.memberInfo .role {
+  display: inline-block;
+  color: #5B8CAE;
+  font-weight: 700;
+  font-size: 16px;
+  margin-right: 16px;
+  min-width: 60px;
+}
+
+.memberInfo .name {
+  font-size: 16px;
+  color: #333;
+}
+
+.memberRow {
+  margin-bottom: 8px;
+}
+
+/* ---------- 멤버 카드 ---------- */
+.memberCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.memberAvatar {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: #d0dbe5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  overflow: hidden;
+}
+
+.memberName {
+  background: #8BA4B8;
+  color: #fff;
+  padding: 8px 28px;
+  border-radius: 6px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.memberRole {
+  font-size: 20px;
+  color: #555;
+}
+
+/* ---------- 캘린더 ---------- */
+.calendar {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calendar th {
+  padding: 8px;
+  font-size: 14px;
+  color: #666;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.calendar td {
+  padding: 8px;
+  height: 60px;
+  vertical-align: top;
+  font-size: 13px;
+  border: 1px solid #eee;
+  text-align: left;
+}
+
+.calendar td .dateNum {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.calendar td .dateNumRed {
+  font-weight: 600;
+  font-size: 14px;
+  color: #c0392b;
+  margin-bottom: 4px;
+}
+
+.calendarEvent {
+  background: #E8EDF2;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #333;
+  text-align: center;
+  font-weight: 600;
+}
+
+.calendarEventActive {
+  background: #5B8CAE;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ---------- 아키텍처 전용 ---------- */
+.archBox {
+  background: #fff;
+  border: 2px solid #dde4eb;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: left;
+}
+
+.archBoxHeader {
+  background: #8BA4B8;
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.archItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: #f5f8fa;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.archIcon {
+  width: 48px;
+  height: 48px;
+  background: #EBF0F5;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.archLabel {
+  font-weight: 800;
+  font-size: 20px;
+  color: #1a1a1a;
+  text-align: left;
+}
+
+.archDesc {
+  font-size: 14px;
+  color: #888;
+  text-align: left;
+  margin-top: 2px;
+}
+
+/* ---------- 서버 구성도 ---------- */
+.serverBox {
+  background: #fff;
+  border: 2px solid #dde4eb;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.serverLabel {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.serverIp {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.serverRole {
+  display: inline-block;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.rolePrimary {
+  background: #27ae60;
+  color: #fff;
+}
+
+.roleBackup {
+  background: #e67e22;
+  color: #fff;
+}
+
+.vipBadge {
+  display: inline-block;
+  background: #3498db;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---------- 기능 카드 ---------- */
+.featureCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #dde4eb;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.featureIcon {
+  width: 48px;
+  height: 48px;
+  background: #EBF0F5;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.featureTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.featureDesc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ---------- 통계 수치 ---------- */
+.statBox {
+  text-align: center;
+  padding: 20px;
+}
+
+.statNumber {
+  font-size: 48px;
+  font-weight: 800;
+  color: #2c3e50;
+}
+
+.statLabel {
+  font-size: 14px;
+  color: #777;
+  margin-top: 8px;
+}
+
+.statUnit {
+  font-size: 18px;
+  color: #5B8CAE;
+  font-weight: 600;
+}
+
+/* ---------- 타임라인 ---------- */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 60px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.timelineItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.timelineDot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #5B8CAE;
+  flex-shrink: 0;
+}
+
+.timelineLabel {
+  background: #5B8CAE;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  min-width: 100px;
+  text-align: center;
+}
+
+.timelineText {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.timelineTextBold {
+  font-weight: 700;
+  font-size: 20px;
+  color: #1a1a1a;
+}
+
+.timelineDesc {
+  font-size: 14px;
+  color: #777;
+  margin-top: 4px;
+}
+
+/* ---------- 엔딩 슬라이드 ---------- */
+.endingSlide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+.endingText {
+  font-size: 72px;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+}
+
+.endingSubtext {
+  font-size: 28px;
+  color: #fff;
+  text-align: center;
+  margin-top: 16px;
+  font-weight: 600;
+}
+
+/* ---------- 반응형 (화면에서 보기 편하게) ---------- */
+@media (max-width: 1500px) {
+  .slide {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}

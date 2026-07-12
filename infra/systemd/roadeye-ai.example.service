@@ -1,0 +1,27 @@
+# roadeye-ai.example.service
+#
+# RoadAEye AI 추론 서버 systemd 서비스 예시 파일
+# 실제 배포 시 사용자, 그룹 및 경로를 환경에 맞게 수정하세요.
+#
+# 설치 방법:
+#   sudo cp roadeye-ai.example.service /etc/systemd/system/roadeye-ai.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now roadeye-ai
+
+[Unit]
+Description=RoadAEye - AI Inference Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=roadaeye
+Group=roadaeye
+WorkingDirectory=/opt/roadaeye/ai/road-ai
+ExecStart=/opt/roadaeye/ai/road-ai/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8001
+EnvironmentFile=-/opt/roadaeye/ai/road-ai/.env
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

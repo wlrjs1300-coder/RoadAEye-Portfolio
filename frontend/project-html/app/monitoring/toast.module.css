@@ -1,0 +1,98 @@
+/* app/monitoring/toast.module.css */
+
+/* 토스트들을 화면 우측 하단에 고정시키는 컨테이너 */
+.toastContainer {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 9999; /* 최상단에 위치 */
+  pointer-events: none; /* 컨테이너 자체는 클릭 무시, 내부 아이템만 클릭되게 */
+}
+
+/* 개별 토스트 카드 스타일 */
+.toastCard {
+  pointer-events: auto; /* 클릭 가능하도록 복구 */
+  width: 320px;
+  background-color: var(--bg-sub);
+  border: 1px solid var(--border-color);
+  border-left: 5px solid var(--red); /* 위험 알림임을 강조하는 포인트 왼쪽 선 */
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  
+  /* 🌟 등장 및 퇴장 애니메이션 적용 */
+  animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: all 0.3s ease;
+}
+
+/* 주의(Warning) 등급일 경우 색상 변경 분기 (필요시 사용) */
+.toastCard.warning {
+  border-left-color: #ffaa00;
+}
+
+/* 상단 라인 (타이틀 + 닫기 버튼) */
+.toastHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toastTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+
+.closeBtn:hover {
+  color: var(--text);
+}
+
+/* 본문 내용 구역 */
+.toastBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.location {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.targetInfo {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* 🌟 오른쪽에서 왼쪽으로 스르륵 들어오는 Slide-In 애니메이션 */
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

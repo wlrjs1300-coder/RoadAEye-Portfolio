@@ -1,0 +1,385 @@
+/* app/board/qna/[id]/detail.module.css */
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  color: var(--text-primary);
+}
+
+/* 뒤로가기 버튼 */
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 30px;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: var(--red);
+}
+
+/* 질문 박스 */
+.questionBox {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.questionHeader {
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.lockIcon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.metaInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.author,
+.date {
+  display: inline-block;
+}
+
+.author::before {
+  content: "작성자 · ";
+  color: var(--text-muted);
+}
+
+.date::before {
+  content: "작성일 · ";
+  color: var(--text-muted);
+}
+
+.status {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.completed {
+  background: rgba(227, 30, 36, 0.1);
+  color: #e31e24;
+}
+
+.status.pending {
+  background: rgba(102, 102, 102, 0.1);
+  color: #666;
+}
+
+.questionContent {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* 답변 박스 */
+.answerBox {
+  background: rgba(225, 29, 72, 0.03);
+  border-left: 4px solid var(--red);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 30px;
+}
+
+.answerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.answerHeader h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--red);
+}
+
+.answerDate {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.answerContent {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.answerContent p {
+  margin: 0 0 12px 0;
+}
+
+.answerContent p:last-child {
+  margin-bottom: 0;
+}
+
+/* 답변 없음 */
+.noAnswer {
+  background: var(--bg-sub);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.noAnswer p {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* 답변 작성 폼 */
+.answerForm {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.answerForm h3 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--text);
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--red);
+  box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.1);
+}
+
+.textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.formActions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--red);
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 찾을 수 없음 */
+.notFound {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.notFound h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 30px;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--red);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.backButton:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 30px auto;
+  }
+
+  .questionBox,
+  .answerForm {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .titleRow {
+    flex-wrap: wrap;
+  }
+
+  .answerHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .metaInfo {
+    gap: 12px;
+    font-size: 12px;
+  }
+}
+
+/* ======== 첨부파일 ======== */
+.attachmentSection {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.attachmentTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 14px;
+}
+
+.attachmentList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.attachmentItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-sub);
+}
+
+/* 이미지·영상 미리보기 (원본 크기 아님 — 축소 표시) */
+.attachmentPreview {
+  max-width: 100%;
+  width: auto;
+  max-height: 320px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  object-fit: contain;
+  align-self: flex-start;
+  background: #000;
+}
+
+.attachmentMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.attachmentName {
+  font-size: 14px;
+  color: var(--text);
+  word-break: break-all;
+  flex: 1;
+  min-width: 120px;
+}
+
+.attachmentSize {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.attachmentDownload {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #e11d48;
+  text-decoration: none;
+  padding: 5px 12px;
+  border: 1px solid #e11d48;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.attachmentDownload:hover {
+  background: #e11d48;
+  color: #fff;
+}

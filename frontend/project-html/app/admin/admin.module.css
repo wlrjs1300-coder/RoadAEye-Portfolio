@@ -1,0 +1,131 @@
+/* admin.module.css */
+
+.container {
+    max-width: 1100px; /* 조금 더 넓게 조정 */
+    margin: 40px auto;
+    padding: 0 20px;
+    color: var(--text-main);
+}
+
+.header {
+    margin-bottom: 40px;
+}
+
+.header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.header p {
+    font-size: 16px;
+    color: var(--text-sub);
+    margin: 0;
+}
+
+/* 💡 추가: 붉은 선 스타일 */
+.titleLine {
+    width: 100%;
+    height: 2px;
+    background-color: #e31e24;
+    margin-top: 15px;
+}
+
+/* 상단 4구 카드 그리드 */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.statCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-sub);
+    margin-bottom: 15px;
+}
+
+.cardBody h3 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+/* 💡 추가: 수치 옆 트렌드 색상 */
+.trend {
+    font-size: 12px;
+    color: #2ecc71;
+    font-weight: 600;
+}
+
+/* 💡 추가: 상태 및 알림 텍스트 */
+.statusOn { font-size: 12px; color: #2ecc71; font-weight: 600; }
+.alertText { color: #e31e24 !important; }
+
+/* 💡 추가: 카드 내부 버튼 */
+.viewBtn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* 💡 하단 섹션 레이아웃 (JSX와 이름 맞춤) */
+.contentSections {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+.mainSection h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.placeholderBox {
+    height: 250px;
+    background: var(--bg-sub);
+    border: 1px dashed var(--border-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-sub);
+}
+
+.sideSection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.linkCard {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 22px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.linkCard:hover {
+    border-color: #e31e24;
+    transform: translateX(5px);
+}

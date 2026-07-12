@@ -1,0 +1,46 @@
+/* app/board/resources/[id]/detail.module.css */
+.container { max-width: 900px; margin: 40px auto; padding: 0 20px; color: var(--text-primary); }
+.backLink {
+  display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted);
+  text-decoration: none; font-size: 14px; margin-bottom: 24px; transition: color 0.2s;
+}
+.backLink:hover { color: #e11d48; }
+.postBox {
+  background: var(--bg-card, #fff); border: 1px solid var(--border-color, #eee);
+  border-radius: 12px; padding: 28px 30px; margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.postHeader { margin-bottom: 20px; border-bottom: 1px solid var(--border-color, #eee); padding-bottom: 16px; }
+.title { font-size: 22px; font-weight: 700; color: var(--text); margin: 0 0 12px; }
+.metaInfo { display: flex; align-items: center; gap: 16px; font-size: 13px; color: var(--text-muted); flex-wrap: wrap; }
+.postContent { font-size: 15px; line-height: 1.8; color: var(--text); word-break: break-word; }
+.attachmentSection { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-color, #eee); }
+.attachmentTitle {
+  display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600;
+  color: var(--text); margin: 0 0 12px;
+}
+.attachmentList { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.attachmentItem {
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+  border: 1px solid var(--border-color, #eee); border-radius: 10px;
+  background: var(--bg-sub, #fafafa);
+}
+.attachmentPreview { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; }
+.attachmentMeta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.attachmentName { font-size: 14px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.attachmentSize { font-size: 12px; color: var(--text-muted); }
+.attachmentDownload {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 5px 10px; flex-shrink: 0;
+  background: transparent; color: #e11d48;
+  border: 1px solid #e11d4844; border-radius: 6px;
+  text-decoration: none; font-size: 12px; font-weight: 700;
+  white-space: nowrap; transition: all 0.15s;
+}
+.attachmentDownload:hover { background: #e11d48; color: #fff; border-color: #e11d48; }
+
+.attachmentLoading {
+  font-size: 12px; color: var(--text-muted); flex-shrink: 0; padding: 5px 4px;
+}
+.notFound { text-align: center; padding: 60px 20px; }
+.notFound h2 { color: var(--text-muted); margin-bottom: 20px; }

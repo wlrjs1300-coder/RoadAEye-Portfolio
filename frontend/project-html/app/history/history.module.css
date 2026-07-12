@@ -1,0 +1,278 @@
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  color: var(--text);
+}
+
+.header {
+  border-bottom: 2px solid #e11d48;
+  padding-bottom: 10px;
+  margin-bottom: 24px;
+}
+
+.header h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.headerIcon {
+  color: #e11d48;
+}
+
+.header p {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* 상단 도구 영역 */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.unreadInfo {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.unreadInfo strong {
+  color: #e11d48;
+  font-weight: 700;
+}
+
+.toolbarButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.toolBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--bg-sub);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toolBtn:hover:not(:disabled) {
+  border-color: #e11d48;
+  color: #e11d48;
+}
+
+.dangerBtn:hover:not(:disabled) {
+  background: #e11d48;
+  border-color: #e11d48;
+  color: #fff;
+}
+
+.toolBtn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* 알림 목록 */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-sub);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.item:hover {
+  border-color: rgba(225, 29, 72, 0.45);
+}
+
+/* 안 읽은 알림 강조 */
+.unread {
+  background: rgba(225, 29, 72, 0.05);
+  border-color: rgba(225, 29, 72, 0.25);
+}
+
+/* 읽은 알림은 흐리게 */
+.read {
+  opacity: 0.65;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.dotDanger {
+  background: #e11d48;
+}
+
+.dotInfo {
+  background: #3b82f6;
+}
+
+.itemBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.itemTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.newBadge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  background: #e11d48;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.itemText {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0 0 6px;
+}
+
+.itemTime {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* 알림 없음 */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-color);
+  border-radius: 10px;
+}
+
+/* 페이지네이션 (공지사항과 동일 스타일) */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 24px;
+}
+
+.pageBtn {
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.pageActive {
+  background: #e11d48;
+  border-color: #e11d48;
+  color: #fff;
+  font-weight: 700;
+}
+
+.pageEllipsis {
+  padding: 6px 4px;
+  color: var(--text-muted);
+}
+
+/* 하단 푸터 (시간 + 버튼) */
+.itemFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.itemActions {
+  display: flex;
+  gap: 6px;
+}
+
+/* 읽음 버튼 — 빨간 배경 */
+.readBtn {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #e11d48;
+  color: #fff;
+  border: none;
+  transition: all 0.15s ease;
+}
+.readBtn:hover { background: #be123c; }
+
+/* 안 읽음 버튼 — outline */
+.readBtnRead {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  color: #e11d48;
+  border: 1px solid #e11d48;
+  transition: all 0.15s ease;
+}
+.readBtnRead:hover { background: rgba(225,29,72,0.08); }
+
+/* 삭제 버튼 — 공지사항 수정 버튼과 동일 */
+.itemDeleteBtn {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--table-hover, #f3f4f6);
+  color: var(--text-primary, var(--text));
+  border: 1px solid var(--table-border, var(--border-color));
+  transition: all 0.15s ease;
+}
+.itemDeleteBtn:hover { background: #333; color: #fff; border-color: #333; }

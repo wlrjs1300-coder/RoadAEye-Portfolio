@@ -1,0 +1,158 @@
+/* 자체 디자인 확인 모달 — 표준 다이얼로그 패턴 (가운데 정렬, 큰 아이콘) */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 6000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: confirmFade 0.18s ease-out;
+}
+
+.content {
+  position: relative;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
+  animation: confirmPop 0.2s ease-out;
+}
+
+@keyframes confirmFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes confirmPop {
+  from { opacity: 0; transform: translateY(8px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* 우상단 작은 ✕ 닫기 버튼 — 헤더 바 없이 모달 모서리에 absolute */
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  transition: all 0.15s ease;
+  z-index: 2;
+}
+
+.closeBtn:hover {
+  color: var(--red);
+  background: rgba(225, 29, 72, 0.08);
+}
+
+/* 본문 — 가운데 정렬, 위에서 아래로 큰 아이콘 → 제목 → 메시지 위계 */
+.body {
+  padding: 32px 28px 24px 28px;
+  text-align: center;
+}
+
+/* 큰 원형 아이콘 (danger일 때만) */
+.iconCircle {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: rgba(225, 29, 72, 0.12);
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 제목 — 큰 글씨, 가운데, 굵게 */
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 10px 0;
+  letter-spacing: -0.3px;
+  line-height: 1.4;
+}
+
+/* 메시지 — 본문 톤, 가운데, 줄간격 넉넉히 */
+.message {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.line {
+  margin: 0 0 4px 0;
+}
+
+.line:last-child {
+  margin-bottom: 0;
+}
+
+/* 푸터 — 버튼 가로 균등 분포 */
+.footer {
+  display: flex;
+  gap: 10px;
+  padding: 16px 24px 22px 24px;
+  background: var(--bg);
+  border-top: 1px solid var(--border-color);
+}
+
+.btn {
+  flex: 1;
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+  letter-spacing: -0.1px;
+}
+
+.cancelBtn {
+  background: var(--bg-sub);
+  border-color: var(--border-color);
+  color: var(--text);
+}
+
+.cancelBtn:hover {
+  background: var(--bg-main);
+  border-color: var(--text-muted);
+}
+
+.confirmBtn {
+  background: var(--red);
+  color: white;
+  border-color: var(--red);
+}
+
+.confirmBtn:hover {
+  opacity: 0.9;
+}
+
+.dangerBtn {
+  background: #e11d48;
+  color: white;
+  border-color: #e11d48;
+}
+
+.dangerBtn:hover {
+  background: #be123c;
+  border-color: #be123c;
+}

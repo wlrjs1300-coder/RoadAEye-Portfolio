@@ -1,0 +1,457 @@
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+  color: var(--text-main);
+  /* 로고와 별개의 '관리자 계정 생성' 텍스트를 위한 스타일로 유지 */
+}
+
+.subtitle {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--text-muted, #666);
+  text-align: center;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px; /* 간격 조정 */
+}
+
+.header a {
+  text-decoration: none !important; /* 강제로 밑줄 제거 */
+  color: inherit;       
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 정확히 반반 나누기 */
+  gap: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 아이디와 이메일처럼 가로를 다 써야 하는 필드는 한 줄 차지하게 설정 */
+.fullWidth {
+  grid-column: span 2;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* 테마 배경색 변수 사용 */
+  background-color: var(--bg-main); 
+  transition: background-color 0.3s ease;
+}
+
+.registerCard {
+  background: var(--bg-sub);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 600px; /* 카드의 최대 너비를 적절히 설정 */
+  margin: 0 auto;
+}
+
+.inputGroup {
+  display: flex;
+  gap: 8px;
+  width: 100%; 
+  align-items: center;
+  box-sizing: border-box; 
+}
+
+.inputGroup input {
+  flex: 1; 
+  min-width: 0; 
+  width: 100%;
+}
+
+.inputBox {
+  display: flex;           
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;     /* 간격 통일 */
+}
+
+.inputBox label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;      /* 로그인 페이지와 통일 */
+  font-weight: 500;     /* bold 대신 500 사용 */
+  color: var(--text);   /* 변수명 통일 */
+}
+
+.inputBox input {
+  width: 100%;          /* ➕ 부모 박스 크기에 무조건 100% 맞춤 */
+  height: 45px;         /* 높이 고정 */
+  padding: 0 16px;      /* 상하 패딩을 제거하고 좌우 패딩만 부여하여 텍스트 정렬 */
+  box-sizing: border-box; /* ➕ 테두리 두께까지 높이 45px에 포함시킴 */
+  
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #1a1a1a;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  
+  /* 비밀번호 창과 일반 창의 글자 크기 및 높이 감각 통일 */
+  font-size: 14px;      
+  line-height: 45px;    /* ➕ 글자가 인풋창 한가운데 오도록 수직 정렬 강제 */
+  font-family: inherit;
+}
+
+/* 생년월일 3분할 드롭다운 */
+.birthGroup {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+
+.birthSelect {
+  flex: 1;
+  height: 45px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  transition: border-color 0.2s ease;
+}
+
+.birthSelect:focus {
+  outline: none;
+  border-color: #e61e4d;
+  box-shadow: 0 0 0 2px rgba(230, 30, 77, 0.1);
+}
+
+.birthSelect option {
+  color: #1a1a1a;
+  background: #ffffff;
+}
+
+:global([data-theme='dark']) .birthSelect {
+  background-color: #222222;
+  border-color: var(--border-color);
+  color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23aaa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+:global([data-theme='dark']) .birthSelect option {
+  background: #222222;
+  color: #ffffff;
+}
+
+.emailGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emailGroup input {
+  flex: 1.5; /* 아이디 칸 */
+}
+
+.emailIdInput, .domainInput, .domainSelect {
+  flex: 1;
+  min-width: 0; /* flex 안에서 요소가 삐져나가는 것 방지 */
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  background-color: white;
+  color: #1a1a1a;
+  font-family: inherit;
+}
+
+.atSymbol {
+  flex-shrink: 0; /* @ 기호 크기 고정 */
+  font-weight: bold;
+}
+
+.atSymbol {
+  font-weight: bold;
+  color: #555;
+}
+
+.domainSelect {
+  flex: 1.2;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: white;
+  font-family: inherit;
+}
+
+
+:global([data-theme='dark']) .inputBox input {
+  background: #222222;
+  border: 1px solid var(--border-color);
+  color: #ffffff;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 14px;
+  grid-column: span 2;
+  background: var(--red); /* #e61e4d 대신 공통 변수 var(--red) 사용 */
+  color: white;
+  border: none;
+  border-radius: 6px;     /* 8px -> 6px로 수정 */
+  font-size: 16px;        /* 로그인 버튼 크기와 통일 */
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 0;
+  transition: opacity 0.2s;
+}
+
+.submitBtn:hover {
+  opacity: 0.9;           /* 로그인 페이지 hover 방식과 통일 */
+}
+.inputBox input::placeholder {
+  color: var(--text-muted, #888);
+}
+
+.sideBtn {
+  flex-shrink: 0; 
+  padding: 0 16px;
+  height: 45px;         /* 인풋창과 동일한 45px */
+  box-sizing: border-box; /* ➕ 높이 계산 오류 방지 */
+  
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+/* 포커스 시 테두리 색상은 브랜드 컬러 유지 */
+.inputBox input:focus {
+  outline: none;
+  border-color: #e61e4d;
+  box-shadow: 0 0 0 2px rgba(230, 30, 77, 0.1);
+}
+
+.loginLink {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted, #666);
+}
+
+.loginLink a {
+  color: #e61e4d;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.inputBox label::after {
+  content: " *";      /* 공백 한 칸과 별표 */
+  color: #e91e63;     /* ROAD A EYE 메인 레드 컬러 */
+  font-weight: bold;
+}
+
+
+@media (max-width: 600px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+  .fullWidth {
+    grid-column: span 1;
+  }
+  .submitBtn {
+    grid-column: span 1;
+  }
+}
+
+/* ==========================================================================
+   이용약관 모달 팝업 스타일 (추가분)
+   ========================================================================== */
+
+/* 모달 전체 배경 어둡게 처리 */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* 반투명 검은 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 헤더보다 위에 오도록 설정 */
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* 모달 카드 상자 */
+.modalContent {
+  background: var(--bg-sub, #ffffff);
+  color: var(--text, #1a1a1a);
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 520px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.modalContent h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+  color: var(--text-main);
+}
+
+/* 이용약관 스크롤 박스 */
+.termsBox {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 6px;
+  height: 220px;
+  overflow-y: auto; /* 내용 많으면 스크롤 */
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+:global([data-theme='dark']) .termsBox {
+  background: #222;
+  border-color: #333;
+}
+
+.termsBox h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  color: var(--red, #e61e4d);
+}
+
+.termsBox p {
+  margin-bottom: 8px;
+  color: var(--text-muted, #555);
+}
+
+/* 체크박스 정렬 라벨 */
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 10px 0 20px 0;
+  user-select: none;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--red, #e61e4d); /* 체크박스 포인터 색상 일치 */
+  cursor: pointer;
+}
+
+/* 하단 버튼 그룹 */
+.modalBtns {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.modalBtns button {
+  flex: 1;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+/* 취소 버튼 */
+.cancelBtn {
+  background: #eeeeee;
+  color: #333333;
+}
+.cancelBtn:hover {
+  background: #e0e0e0;
+}
+
+:global([data-theme='dark']) .cancelBtn {
+  background: #333333;
+  color: #ffffff;
+}
+:global([data-theme='dark']) .cancelBtn:hover {
+  background: #444444;
+}
+
+/* 동의 후 가입완료 버튼 */
+.confirmBtn {
+  background: var(--red, #e61e4d);
+  color: white;
+}
+.confirmBtn:disabled {
+  background: #cccccc;
+  color: #888888;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.confirmBtn:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.addressSearchBtn {
+  flex-shrink: 0;
+  padding: 0 16px;
+  height: 45px;
+  box-sizing: border-box;
+  background: var(--red, #e61e4d);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.addressSearchBtn:hover {
+  opacity: 0.88;
+}
+
+.addressReadonly {
+  background: var(--bg-main, #f5f5f5) !important;
+  cursor: pointer;
+}
+
+:global([data-theme='dark']) .addressReadonly {
+  background: #2a2a2a !important;
+}

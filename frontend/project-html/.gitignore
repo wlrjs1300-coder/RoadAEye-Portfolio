@@ -1,0 +1,9 @@
+.env.local
+.env
+venv/
+pycache/
+*.pyc
+*.pyo
+captures/
+node_modules
+.next/

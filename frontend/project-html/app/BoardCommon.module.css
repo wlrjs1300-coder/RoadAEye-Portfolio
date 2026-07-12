@@ -1,0 +1,26 @@
+/* BoardCommon.module.css (공통 스타일) */
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+  color: var(--text-primary);
+}
+
+.header {
+  border-bottom: 1px solid var(--table-border);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.desc {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}

@@ -1,0 +1,494 @@
+.container {
+  background: var(--bg-sub);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.viewHeader {
+  min-height: 50px;
+  padding: 9px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.liveBadge {
+  color: #00ff00;
+  font-size: 10px;
+  font-weight: bold;
+  background: rgba(0, 255, 0, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.locationName {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.videoWrapper {
+  position: relative;
+  flex: 1;
+  background: #000;
+  min-height: 360px;
+  width: 100%;
+  /* aspect-ratio 부작용 — flex 컨테이너 안에서 부모 높이를 침범해 하단 슬라이더가 잘리는 문제 발생.
+     영상 자체의 object-fit: cover로 비율 통일하는 방식 유지. */
+  overflow: hidden;
+}
+
+/* 큰 영상 영역 — snapshot 위 ▶ 재생 패턴 (네트워크 부담 ↓) */
+.bigPlayWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: #000;
+  cursor: pointer;
+  overflow: hidden;
+  display: block;
+}
+
+.bigPlayOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.15s ease;
+  pointer-events: none;
+}
+
+.bigPlayWrapper:hover .bigPlayOverlay {
+  background: rgba(0, 0, 0, 0.75);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+/* 재생 중 — 우상단 일시정지 버튼 */
+.bigPauseBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background 0.15s ease;
+}
+
+.bigPauseBtn:hover {
+  background: rgba(225, 29, 72, 0.85);
+}
+
+.videoPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #444;
+}
+
+/* 탐지 박스 효과 (YOLO 스타일) */
+.boundingBox {
+  position: absolute;
+  border: 2px solid var(--red);
+  background: rgba(225, 29, 72, 0.1);
+}
+
+.label {
+  position: absolute;
+  top: -22px;
+  left: -2px;
+  background: var(--red);
+  color: white;
+  font-size: 11px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
+.videoStatus {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px 15px;
+  display: flex;
+  gap: 15px;
+  font-size: 11px;
+  color: #ccc;
+}
+
+.statusGreen { color: #00ff00; }
+
+/* 하단 썸네일 슬라이더 */
+.cameraSlider {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 7px;
+  gap: 7px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.thumbList {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 2px 5px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.thumbList::-webkit-scrollbar { display: none; }
+
+.thumbItem {
+  /* 모든 썸네일을 동일한 폭으로 고정 — 카메라 이름 길이가 달라도 박스 크기 일정 */
+  flex: 0 0 88px;
+  width: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s ease;
+}
+
+.thumbItem:hover { opacity: 0.85; }
+
+/* 현재 재생 중 — opacity + 빨강 outline + 글자 색·굵기로 명확히 강조 */
+.thumbItem.active { opacity: 1; }
+.thumbItem.active .thumbRect {
+  outline: 2px solid var(--red);
+  outline-offset: 1px;
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.18);
+}
+.thumbItem.active span {
+  color: var(--red);
+  font-weight: 700;
+}
+
+.thumbRect {
+  width: 100%;
+  height: 36px;
+  background: #333;
+  border-radius: 4px;
+  position: relative; /* deleteBtn absolute 기준 */
+  overflow: hidden;
+}
+
+.thumbImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 썸네일 우상단 ✕ 삭제 버튼 — 부모 클릭(카메라 선택)과 분리됨 */
+.deleteBtn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.deleteBtn:hover {
+  opacity: 1;
+  background: var(--red);
+}
+
+/* 내 웹캠 썸네일 (CCTV와 구분되도록 강조) */
+.webcamThumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red);
+  background: rgba(225, 29, 72, 0.12);
+}
+
+.thumbItem span {
+  min-height: 10px;
+  font-size: 8.5px;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.controls {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+
+.settingsWrap {
+  position: relative;
+  display: flex;
+}
+
+.toolBtn {
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.toolBtn:hover,
+.activeTool {
+  color: var(--red);
+  border-color: rgba(225, 29, 72, 0.45);
+  background: rgba(225, 29, 72, 0.1);
+}
+
+.settingsPanel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 220px;
+  background: var(--bg-sub);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+  color: var(--text);
+}
+
+.settingsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.settingsHeader button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settingsHeader button:hover {
+  color: var(--red);
+  background: rgba(225, 29, 72, 0.08);
+}
+
+.settingGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 10px 0;
+}
+
+.settingLabel {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.segmented button {
+  height: 28px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.segmented button:hover,
+.segmented .selected {
+  color: var(--red);
+  background: rgba(225, 29, 72, 0.12);
+}
+
+.toggleRow {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid var(--border-color);
+  font-size: 12px;
+  color: var(--text);
+}
+
+.switch {
+  position: relative;
+  width: 34px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.switch input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.switch span {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: rgba(120, 120, 120, 0.35);
+  transition: background 0.2s;
+}
+
+.switch span::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.switch input:checked + span {
+  background: var(--red);
+}
+
+.switch input:checked + span::after {
+  transform: translateX(14px);
+}
+
+.slideBtn {
+  width: 28px;
+  height: 28px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleGroup h3 {
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.controls button svg,
+.slideBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  border-radius: 0;
+  background: var(--bg);
+}
+
+.fullscreen .viewHeader {
+  min-height: 56px;
+}
+
+.fullscreen .videoWrapper {
+  min-height: 0;
+}
+
+.fullscreen .cameraSlider {
+  height: 72px;
+}
+
+.fullscreen .thumbItem {
+  flex-basis: 104px;
+  width: 104px;
+}
+
+.fullscreen .thumbRect {
+  height: 44px;
+}

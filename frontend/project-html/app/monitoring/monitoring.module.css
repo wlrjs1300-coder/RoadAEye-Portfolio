@@ -1,0 +1,279 @@
+.container {
+  max-width: 1280px;
+  background-color: var(--bg);
+  min-height: calc(100vh - var(--header-height, 70px));
+  color: var(--text);
+  font-family: 'Pretendard', -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0 auto;
+  padding: 32px 24px 18px;
+  box-sizing: border-box;
+}
+
+.header {
+  width: 100%;
+  margin-bottom: 14px;
+  border-bottom: 2px solid #e11d48;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+}
+
+.header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.header p {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+  margin-bottom: 6px;
+}
+
+/* 좌우 이분할 그리드 */
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 25px;
+  align-items: stretch; 
+}
+
+/* ==================== 좌측: 비디오 섹션 ==================== */
+.videoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%; 
+}
+
+/* 🌟 중요: 토스트 알림이 이 박스를 기준으로 우측 하단에 고정됩니다. */
+.videoWrapper {
+  position: relative;
+  /* absolute의 기준점 역할을 수행 */
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-color);
+  transition: border-color 0.3s ease;
+}
+
+.videoPlayer {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 비디오 내부 상단 정보 오버레이 */
+.videoOverlayTop {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(10, 10, 10, 0.75);
+  padding: 6px 14px;
+  border-radius: 30px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 2;
+}
+
+.liveBadge {
+  background-color: var(--red);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.cctvNameLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* CCTV 컨트롤 버튼 라인 */
+.videoControls {
+  display: flex;
+  gap: 10px;
+}
+
+.controlBtn {
+  background-color: var(--bg-sub);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.controlBtn:hover {
+  background-color: var(--border-color);
+  color: var(--text);
+}
+
+.activeBtn {
+  background-color: var(--red) !important;
+  border-color: var(--red) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+}
+
+/* ==================== 우측: 실시간 AI 로그 섹션 ==================== */
+.logSection {
+  background-color: var(--bg-sub);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  height: 60.7%; 
+  display: flex;
+  flex-direction: column;
+}
+
+.logSection h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--text);
+}
+
+.logTableWrapper {
+  flex: 1;
+  overflow-y: auto;
+  border-radius: 6px;
+  background-color: var(--bg);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.logTableWrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.logTableWrapper::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 3px;
+}
+
+/* 🌟 깨짐 방지 테이블 레이아웃 수정 및 고정 */
+.logTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+  table-layout: fixed;
+  /* 데이터가 길어져도 지정된 너비를 강제 유지 */
+}
+
+/* 🌟 각 칸(시간, 차량번호, 차종, 상태)의 정렬과 비율을 확실하게 배분 */
+.logTable th,
+.logTable td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* 글자가 넘치면 ... 처리 */
+  white-space: nowrap;
+  /* 줄바꿈 방지 */
+}
+
+.logTable th {
+  background-color: var(--bg-sub);
+  color: var(--text-muted);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* 각 열의 너비 지정 (합계 100%) */
+.logTable th:nth-child(1),
+.logTable td:nth-child(1) {
+  width: 20%;
+  text-align: center;
+}
+
+/* 시간 */
+.logTable th:nth-child(2),
+.logTable td:nth-child(2) {
+  width: 28%;
+  text-align: center;
+}
+
+/* 차량번호 */
+.logTable th:nth-child(3),
+.logTable td:nth-child(3) {
+  width: 17%;
+  text-align: center;
+}
+
+/* 차종 */
+.logTable th:nth-child(4),
+.logTable td:nth-child(4) {
+  width: 35%;
+  text-align: center;
+}
+
+/* 상태 */
+
+/* 상태별 행 배경 흐림 연출 */
+.logTable tr.위험 {
+  background-color: rgba(225, 29, 72, 0.07);
+}
+
+.logTable tr.주의 {
+  background-color: rgba(255, 170, 0, 0.05);
+}
+
+/* 알림 배지 정의 */
+.statusBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  width: 90%;
+  /* 배지가 칸 안에서 예쁘게 차도록 설정 */
+  text-align: center;
+}
+
+.statusBadge.정상 {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.statusBadge.주의 {
+  background-color: rgba(255, 170, 0, 0.15);
+  color: #ffaa00;
+}
+
+.statusBadge.위험 {
+  background-color: rgba(225, 29, 72, 0.15);
+  color: var(--red);
+}

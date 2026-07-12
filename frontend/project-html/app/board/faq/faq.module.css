@@ -1,0 +1,291 @@
+.container {
+  max-width: 1280px;
+  min-height: calc(100vh - var(--header-height));
+  margin: 0 auto;
+  padding: 40px 24px 18px;
+  box-sizing: border-box;
+}
+
+.header {
+  width: 100%;
+  margin-bottom: 14px;
+  border-bottom: 2px solid #e11d48;
+  padding-bottom: 8px;
+  box-sizing: border-box; 
+
+}
+
+.header h2 {
+  font-size: 28px;    
+  font-weight: 700;
+  margin-bottom: 6px;    
+}
+
+.header p {
+  font-size: 14px;
+  color: #888;
+  margin: 0;            
+  margin-bottom: 6px;
+}
+
+
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faqItem {
+  background: var(--bg-primary);
+  border: 1px solid var(--table-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faqItem:hover {
+  border-color: #e11d48;
+}
+
+.question {
+  padding: 13px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.questionLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  color: #e11d48;
+}
+
+.answer {
+  padding: 0 16px 12px 46px; /* 아이콘 위치만큼 왼쪽 여백을 줌 */
+  color: var(--text);
+  line-height: 1.45;
+  font-size: 13px;
+  animation: slideDown 0.3s ease; /* 열릴 때 애니메이션 */
+}
+
+/* 활성화 상태 (열렸을 때) 배경색 살짝 변경 */
+.active {
+  background: var(--table-hover);
+  border-color: #e11d48;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.qnaSection {
+  margin-top: 48px;
+  padding: 12px 16px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.qnaText {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.qnaButton {
+  background-color: #e11d48;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.qnaButton:hover {
+  background-color: #b60f33; 
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(227, 30, 36, 0.3);
+}
+
+.formLoading {
+  max-width: 860px;
+  margin: 80px auto;
+  padding: 36px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.backButton:hover { color: #e11d48; }
+
+.editPanel {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 28px 32px 30px;
+  background: var(--bg-primary);
+  border: 1px solid var(--table-border);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+}
+
+.editHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-end;
+  padding-bottom: 18px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--table-border);
+}
+
+.editEyebrow {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #e11d48;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.editHeader h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 24px;
+}
+
+.editHeader p {
+  margin: 0;
+  max-width: 300px;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.writeForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 15px;
+  line-height: 1.6;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input {
+  height: 46px;
+  padding: 0 14px;
+}
+
+.textarea {
+  min-height: 280px;
+  padding: 14px;
+  resize: vertical;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #e11d48;
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.12);
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.cancelButton,
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 108px;
+  height: 42px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.cancelButton {
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.submitButton {
+  border: 1px solid #e11d48;
+  background: #e11d48;
+  color: #fff;
+}
+
+.cancelButton:hover:not(:disabled),
+.submitButton:hover:not(:disabled) { transform: translateY(-1px); }
+.cancelButton:hover:not(:disabled) { border-color: var(--text-muted); color: var(--text-primary); }
+.submitButton:hover:not(:disabled) { background: #be123c; border-color: #be123c; }
+.cancelButton:disabled,
+.submitButton:disabled { opacity: 0.55; cursor: not-allowed; }
+
+@media (max-width: 768px) {
+  .editPanel { padding: 22px 18px; }
+  .editHeader { align-items: flex-start; flex-direction: column; }
+  .editHeader p { max-width: none; text-align: left; }
+}

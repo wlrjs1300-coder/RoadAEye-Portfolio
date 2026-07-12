@@ -1,0 +1,162 @@
+.container {
+  max-width: 1000px; /* 상세 페이지는 조금 더 좁게 잡는 것이 읽기 편합니다. */
+  margin: 40px auto;
+  padding: 0 20px;
+  color: var(--text-primary);
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: color 0.2s;
+}
+
+.backBtn:hover {
+  color: #e11d48;
+}
+
+.adminActions {
+  display: flex;
+  gap: 12px;
+}
+
+.adminActions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.article {
+  background: var(--bg-primary);
+  border: 1px solid var(--table-border);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.articleHeader {
+  border-bottom: 1px solid var(--table-border);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.meta {
+  display: flex;
+  gap: 20px;
+  color: #888;
+  font-size: 14px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.content {
+  min-height: 300px;
+  line-height: 1.8;
+  font-size: 16px;
+  white-space: pre-wrap; /* 줄바꿈 문자를 그대로 표시 */
+}
+
+.articleFooter {
+  margin-top: 50px;
+  padding-top: 24px;
+  border-top: 1px solid var(--table-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listBtn {
+  padding: 10px 40px;
+  border-radius: 8px;
+  background: #e11d48; 
+  color: #ffffff;
+  border: 1px solid #e11d48;
+  
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(225, 29, 72, 0.2);
+}
+
+.listBtn:hover {
+  background: #be123c; 
+  border-color: #be123c;
+  transform: translateY(-2px); 
+  box-shadow: 0 6px 15px rgba(225, 29, 72, 0.3);
+}
+
+/* 수정 버튼 스타일 */
+.editBtn {
+  padding: 10px 25px;
+  border-radius: 8px;
+  background: var(--table-hover);
+  color: var(--text-primary);
+  border: 1px solid var(--table-border);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.editBtn:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* 삭제 버튼 스타일 (Danger) */
+.deleteBtn {
+  padding: 10px 25px;
+  border-radius: 8px;
+  background: transparent;
+  color: #e11d48;
+  border: 1px solid #e11d48;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.deleteBtn:hover {
+  background: #e11d48;
+  color: white;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+}
+
+.pinBtn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--table-border);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.pinBtn:hover:not(:disabled),
+.pinBtnActive {
+  background: rgba(225, 29, 72, 0.1);
+  color: #e11d48;
+  border-color: #e11d48;
+}
+
+.pinBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

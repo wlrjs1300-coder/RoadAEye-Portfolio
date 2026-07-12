@@ -1,0 +1,66 @@
+/* app/dashboard/main.module.css */
+.wrapper {
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--bg) 0%,
+    var(--bg-sub) 100%
+  );
+}
+
+.container {
+  width: 100%;
+  max-width: 1600px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 14px 30px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.topSection {
+  flex: 0 0 auto;
+}
+
+.middleSection {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+  gap: 16px;
+}
+
+.cctvArea,
+.alertArea {
+  min-height: 0;
+}
+
+@media (max-width: 1280px) {
+  .container {
+    padding: 12px 18px;
+  }
+
+  .middleSection {
+    grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.8fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    height: auto;
+    min-height: calc(100vh - var(--header-height));
+    overflow: visible;
+  }
+
+  .container {
+    height: auto;
+  }
+
+  .middleSection {
+    grid-template-columns: 1fr;
+    min-height: 560px;
+  }
+}

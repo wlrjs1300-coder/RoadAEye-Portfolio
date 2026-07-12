@@ -1,0 +1,75 @@
+.container {
+  background: var(--bg-sub);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.tableHeader {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.left { display: flex; align-items: center; gap: 10px; }
+.count { font-size: 12px; color: var(--text-muted); }
+
+.actions { display: flex; gap: 10px; }
+.searchBox {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 8px;
+  min-width: 150px;
+  height: 32px;
+}
+.searchBox input {
+  background: none; border: none; color: white; font-size: 13px; padding: 5px 0; outline: none; width: 100%;
+}
+
+.iconBtn {
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBtn:disabled,
+.detailBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.tableWrapper { overflow-x: auto; max-height: 300px; }
+.table { width: 100%; border-collapse: collapse; text-align: left; }
+.table th {
+  background: rgba(255,255,255,0.02);
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.table td { padding: 12px 20px; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+
+.statusBadge {
+  padding: 2px 8px; border-radius: 4px; font-size: 11px;
+}
+/* status 키(영문)별 색상 — tsx에서 styles[log.status]로 매칭 */
+.UNREAD    { background: rgba(225, 29, 72, 0.2);  color: #ff4d4d; }  /* 미처리 — 빨강 */
+.CONFIRMED { background: rgba(0, 255, 0, 0.1);    color: #00ff00; }  /* 처리완료 — 초록 */
+.DISMISSED { background: rgba(255, 219, 77, 0.1); color: #ffdb4d; }  /* 기각 — 노랑 */
+
+.detailBtn {
+  background: #333; border: none; color: #fff; padding: 4px 10px; border-radius: 4px; cursor: pointer;
+}

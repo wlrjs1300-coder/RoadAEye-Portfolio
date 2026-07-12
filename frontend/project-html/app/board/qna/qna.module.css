@@ -1,0 +1,536 @@
+.container {
+    max-width: 1280px;
+    min-height: calc(100vh - var(--header-height));
+    margin: 0 auto;
+    display: flex;
+    padding: 32px 24px 18px;
+    box-sizing: border-box;
+    flex-direction: column;
+    color: var(--text-primary);
+}
+
+.header {
+    width: 100%;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+}
+
+.header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.header p {
+    font-size: 14px;
+    color: #888;
+    margin: 0;
+    margin-bottom: 6px;
+}
+
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    margin-top: 0;
+}
+
+.table th {
+    padding: 11px 14px;
+    border-bottom: 2px solid #e11d48;
+    font-weight: 600;
+}
+
+.table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.titleCell {
+    text-align: left !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.titleLink {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    text-decoration: none;
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s ease;
+}
+
+.titleLink:hover {
+    color: var(--red);
+    text-decoration: underline;
+}
+
+.titleLink span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lockIcon {
+    color: #999;
+}
+
+/* 답변 상태 배지 */
+.completed {
+    color: #e31e24;
+    font-weight: 600;
+}
+
+.pending {
+    color: #666;
+}
+
+/* 글쓰기 버튼 */
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.writeButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #e11d48;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.writeButton:hover {
+    background: #be123c;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(225, 29, 72, 0.3);
+}
+
+/* 글쓰기 폼 전용 */
+.writeForm {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input,
+.textarea {
+    padding: 12px;
+    background: var(--bg-sub);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 16px;
+    color: var(--text);
+    transition: all 0.2s ease;
+}
+
+.input:focus,
+.textarea:focus {
+    outline: none;
+    border-color: #e11d48;
+    box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.1);
+}
+
+.submitBtn {
+    background: #e31e24;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancelBtn {
+    background: #eee;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* ======== write/page.tsx ======== */
+
+.titleIcon {
+  color: #e11d48; /* Road A Eye 로고의 레드 포인트 매칭 */
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+/* 글쓰기 전용 폼 레이아웃 */
+.writeForm {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.formGroup label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.input, .textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background-color: var(--bg-main); 
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.input:focus, .textarea:focus {
+    border-color: #e11d48; /* 포커스 시 붉은색 테두리 하이라이팅 */
+}
+
+/* 커스텀 비밀글 체크박스 영역 */
+.secretToggleRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    padding: 5px 0;
+    width: fit-content;
+}
+
+.checkbox {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-main);
+    color: var(--text-sub);
+    transition: all 0.2s ease;
+}
+
+.checkedSecret {
+    background: #e11d48;
+    border-color: #e11d48;
+    color: #ffffff !important;
+}
+
+.checkboxLabel {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.subLabel {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-left: 4px;
+}
+
+/* 하단 제어 버튼 컴포넌트 */
+.buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 15px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 25px;
+}
+
+.cancelBtn, .submitBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.cancelBtn {
+    background-color: var(--bg-sub);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.cancelBtn:hover {
+    background-color: var(--border-color);
+}
+
+.submitBtn {
+    background-color: #e11d48;
+    color: #ffffff;
+}
+
+.submitBtn:hover {
+    background-color: #be123c;
+    transform: translateY(-1px);
+}
+
+/* ==========================================
+   Quill 에디터 글로벌 다크모드 스타일 통일
+   ========================================== */
+
+/* 1. 에디터 전체 감싸는 영역의 배경과 둥근 테두리 통일 */
+.editorWrapper {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-main);
+    transition: border-color 0.2s ease;
+}
+
+.editorWrapper:focus-within {
+    border-color: #e11d48;
+}
+
+/* 2. Quill 상단 툴바 스타일 덮어쓰기 */
+.editorWrapper :global(.ql-toolbar.ql-snow) {
+    background-color: var(--bg-sub);
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 16px;
+}
+
+/* 3. Quill 본문 입력창 스타일 덮어쓰기 */
+.editorWrapper :global(.ql-container.ql-snow) {
+    border: none;
+    font-size: 15px;
+    font-family: inherit;
+    background-color: var(--bg-main);
+}
+
+/* 4. 다크모드 글자색 및 플레이스홀더 색상 제어 */
+.editorWrapper :global(.ql-editor) {
+    color: var(--text-main) !important;
+    min-height: 300px;
+}
+
+.editorWrapper :global(.ql-editor.ql-blank::before) {
+    color: var(--text-muted);
+    font-style: normal;
+    left: 15px;
+}
+
+/* 💡 [5번 교체] 아이콘 그래픽을 뭉개지 않는 안전한 컬러 제어 */
+.editorWrapper :global(.ql-snow .ql-picker) {
+    color: var(--text-main); /* 툴바 내 Sans Serif 등 텍스트 컬러 */
+}
+
+/* 드롭다운 버튼 내부의 작은 화살표 선(stroke) 색상만 안전하게 변경 */
+.editorWrapper :global(.ql-snow .ql-picker .ql-picker-label) {
+    stroke: var(--text-main);
+}
+
+/* 툴바 아이콘 SVG 그래픽 자체는 건드리지 않고, 드롭다운 메뉴 스타일만 제어 */
+.editorWrapper :global(.ql-snow .ql-picker-options) {
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+    border-radius: 6px;
+    padding: 6px;
+}
+
+/* ======== 파일 첨부 영역 ======== */
+.fileInput {
+    display: none;
+}
+
+.fileSelectBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--bg-sub);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.fileSelectBtn:hover {
+    border-color: #e11d48;
+}
+
+.fileList {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fileItem {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-sub);
+}
+
+/* 이미지 미리보기 (원본 크기 아닌 썸네일) */
+.filePreview {
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+/* 이미지가 아닌 파일용 아이콘 박스 */
+.fileIconBox {
+    width: 88px;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-main);
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.fileInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.fileName {
+    font-size: 14px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fileSize {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.fileRemoveBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.fileRemoveBtn:hover {
+    background: rgba(225, 29, 72, 0.1);
+    color: #e11d48;
+}
+
+@media (min-width: 1440px) and (min-height: 850px) {
+  .container {
+    max-width: 1320px;
+    padding-top: 40px;
+  }
+
+  .header {
+    margin-bottom: 24px;
+  }
+
+  .header h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .header p {
+    font-size: 15.5px;
+  }
+
+  .table {
+    margin-top: 26px;
+    font-size: 16px;
+  }
+
+  .table th {
+    padding: 16px 18px;
+    font-size: 16px;
+  }
+
+  .table td {
+    padding: 17px 18px;
+    font-size: 16px;
+  }
+
+  .titleLink {
+    font-size: 16px;
+  }
+
+  .footer {
+    margin-top: 18px;
+  }
+
+  .writeButton {
+    padding: 10px 22px;
+    font-size: 16px;
+  }
+}

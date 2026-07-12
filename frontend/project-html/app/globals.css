@@ -1,0 +1,1500 @@
+/* 1. Root & Base Styles */
+:root {
+  --cal-sun: #ef4444;
+  --cal-sat: #3b82f6;
+  --red: #e11d48;
+  --bg: #ffffff;
+  --bg-sub: #f5f5f5;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --header-height: 70px;
+  --border-color: rgba(0, 0, 0, 0.15);
+  /* 라이트 모드용 살짝 진한 테두리 */
+  --header-bg: rgba(255, 255, 255, 1);
+  /* 헤더 완전 불투명 */
+  --bg-card: #ffffff;
+  --bg-main: #ffffff;
+
+  /* 채팅창 전용 변수 */
+  --chat-window-bg: rgba(255, 255, 255, 0.95);
+  --chat-msg-bot: #e9ecef;
+  --chat-msg-user: #ffebf0;
+  --chat-input-bg: #f1f3f5;
+  --chat-border: rgba(0, 0, 0, 0.1);
+}
+
+/* 다크 모드 설정 */
+[data-theme='dark'] {
+  --border-color: rgba(255, 255, 255, 0.1);
+  /* 다크 모드용 연한 테두리 */
+  --header-bg: rgba(10, 10, 10, 1);
+  /* 헤더 완전 불투명 */
+  --bg: #0a0a0a;
+  --bg-sub: #151515;
+  --bg-card: #111111;
+  --bg-main: #0a0a0a;
+  --text: #fff;
+  --text-muted: #aaa;
+  --header-bg: rgba(10, 10, 10, 1);
+  /* 헤더 완전 불투명 (중복 정의도 함께 갱신) */
+
+  /* 채팅창 다크 모드 전용 변수 */
+  --chat-window-bg: rgba(26, 26, 26, 0.95);
+  --chat-msg-bot: #2a2a2a;
+  --chat-msg-user: #e11d48;
+  --chat-input-bg: #2a2a2a;
+  --chat-border: rgba(255, 255, 255, 0.1);
+}
+
+/* globals.css */
+
+.dashboard-card-base {
+  background: var(--bg-sub);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle-btn,
+.presentation-shortcut-btn {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 0 0 40px;
+}
+
+/* 라이트 모드일 때 버튼 테두리 강조 */
+[data-theme='light'] .theme-toggle-btn,
+[data-theme='light'] .presentation-shortcut-btn {
+  border-color: var(--red);
+  background: rgba(225, 29, 72, 0.05);
+}
+
+.presentation-shortcut-btn {
+  color: var(--red);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.presentation-shortcut-btn:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: white;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: sans-serif;
+  padding-top: var(--header-height);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+
+  /* 1. Chrome, Safari, Opera, 최신 Edge 브라우저용 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 2. Firefox용 */
+  scrollbar-width: none;
+
+  /* 3. Internet Explorer 및 구형 Edge용 */
+  -ms-overflow-style: none;
+}
+
+/* 전역 커스텀 스크롤바 (html/body 제외 모든 요소) */
+*:not(html):not(body) {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(225, 29, 72, 0.3) transparent;
+}
+
+*:not(html):not(body)::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*:not(html):not(body)::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*:not(html):not(body)::-webkit-scrollbar-thumb {
+  background: rgba(225, 29, 72, 0.35);
+  border-radius: 99px;
+}
+
+*:not(html):not(body)::-webkit-scrollbar-thumb:hover {
+  background: rgba(225, 29, 72, 0.6);
+}
+
+.red {
+  color: var(--red);
+}
+
+/* 2. Header & Navigation */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+  /* 변수 적용 */
+  z-index: 2000;
+  transition: height 0.3s ease;
+  overflow: visible;
+}
+
+#header.hide {
+  transform: translateY(-100%);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 100%;
+}
+
+.logo {
+  flex: 1;
+  height: 100%;
+  font-size: 24px;
+  font-weight: bold;
+  white-space: nowrap !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-badge {
+  position: absolute;
+  bottom: 0;
+  left: calc(100% + 5px);
+  display: inline-flex;
+  align-items: center;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1.5px solid var(--red);
+  color: var(--red);
+  background: rgba(225, 29, 72, 0.07);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.logo a {
+  text-decoration: none;
+  /* 링크 밑줄 제거 */
+  color: inherit;
+  /* 기존 로고 색상 유지 */
+  display: flex;
+  align-items: center;
+}
+
+.logo:hover {
+  opacity: 0.8;
+  /* 마우스 올렸을 때 살짝 흐려지는 효과 (선택 사항) */
+  transition: opacity 0.2s;
+}
+
+.logo a span {
+  color: var(--red);
+}
+
+/* 테마에 따라 로고 교체: 기본은 라이트, data-theme='dark'면 다크 로고 */
+.logo-img {
+  display: block;
+}
+.logo-dark {
+  display: none;
+}
+[data-theme='dark'] .logo-light {
+  display: none;
+}
+[data-theme='dark'] .logo-dark {
+  display: block;
+}
+
+.menu {
+  flex: 2;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-right: 100px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 15px;
+  transition: color 0.3s;
+}
+
+.menu a:hover,
+.actions a:hover {
+  color: var(--red);
+}
+
+.actions {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.actions a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+/* --- Action Item Dropdown (설정, 알림, 마이페이지 공통) --- */
+.action-item-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  z-index: 2001;
+}
+
+/* 드롭다운 박스 기본 스타일 */
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 240px;
+  max-width: calc(100vw - 24px);
+  background: color-mix(in srgb, var(--bg) 96%, transparent);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 8px;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+  z-index: 3000;
+}
+
+.user-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 24px;
+  width: 22px;
+  height: 11px;
+}
+
+.user-dropdown.visible,
+.action-item-group:focus-within .user-dropdown {
+  display: flex;
+}
+
+.dropdown-section {
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-sub);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 10px 14px;
+  background: color-mix(in srgb, var(--bg-sub) 88%, var(--text) 4%);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.dropdown-section-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  padding: 6px;
+}
+
+.user-dropdown .dropdown-menu-link {
+  min-height: 36px;
+  padding: 6px;
+  border-radius: 8px;
+  color: var(--text);
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.user-dropdown .dropdown-menu-link span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown-icon {
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  color: var(--red);
+  background: var(--bg);
+}
+
+.dropdown-action {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+}
+
+.user-dropdown .dropdown-menu-link:hover {
+  background: rgba(225, 29, 72, 0.1);
+  color: var(--text);
+  transform: translateX(2px);
+}
+
+.user-dropdown .dropdown-menu-link:hover .dropdown-icon {
+  border-color: rgba(225, 29, 72, 0.32);
+  background: rgba(225, 29, 72, 0.08);
+}
+
+/* 특별 강조 텍스트 (삭제, 탈퇴 등) */
+.delete-action:hover,
+.danger-text:hover {
+  color: #ff4d4d !important;
+}
+
+.action-btn,
+.user-profile-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.action-btn:hover {
+  color: var(--red);
+}
+
+/* 알림 종 아이콘이 <a>(Link)라서 .actions a(#aaa)가 먹던 것 보정 */
+.actions a.action-btn {
+  color: var(--text);
+}
+
+.actions a.action-btn:hover {
+  color: var(--red);
+}
+
+.actions a.presentation-shortcut-btn {
+  color: var(--red);
+}
+
+.actions a.presentation-shortcut-btn:hover {
+  color: #fff;
+}
+
+/* 알림 종 아이콘 — 안 읽은 개수 배지 */
+.notification-bell {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  background: var(--red);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.user-profile-btn span {
+  font-weight: 600;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.hero {
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  /* 세로 방향 정렬 */
+  justify-content: center;
+  /* 수직 중앙 */
+  align-items: center;
+  /* 수평 중앙 */
+  text-align: center;
+  /* 텍스트 중앙 */
+  padding: 0 20px;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-content h1 {
+  font-size: 100px;
+  /* 로고 크기 */
+  line-height: 1;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  width: 100%;
+  align-items: center;
+  gap: 50px;
+}
+
+.hero-left h1 {
+  font-size: 100px;
+  line-height: 0.9;
+  font-weight: 800;
+}
+
+/* 버튼 영역 중앙 배치 */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.menu-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+}
+
+/* 메뉴 아이템들을 감싸는 relative 컨테이너 */
+.menu-item-wrapper {
+  position: relative;
+  /* 하위 메뉴 위치의 기준점 */
+  padding: 10px 0;
+}
+
+.main-container {
+  width: 100%;
+  min-height: 100vh;
+  /* 👈 height: 100vh 대신 min-height를 사용해야 컨텐츠가 길어질 때 늘어납니다. */
+  overflow-y: auto;
+  /* 👈 스크롤이 가능하도록 명시 */
+}
+
+.main-menu-a {
+  text-decoration: none;
+  color: var(--header-height);
+  display: flex;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  min-width: max-content;
+  transition: color 0.3s;
+  align-items: center;
+  gap: 8px;
+  cursor: default;
+}
+
+.menu-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  /* 글자와의 간격 */
+  /* 현재 글자색(var(--text))을 아이콘도 그대로 따르게 함 */
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+/* 다크 모드일 때 아이콘 색상 반전 */
+.dark .icon-class {
+  filter: invert(1) brightness(2);
+  /* 완전히 흰색으로 반전 */
+}
+
+/* 또는 밝은 회색으로 살짝만 밝게 하고 싶을 때 */
+.dark .icon-class {
+  filter: invert(0.8);
+}
+
+.dark .icon-class {
+  filter: brightness(0) invert(1);
+  /* 이미지를 완전히 검게 만든 후 다시 흰색으로 반전 */
+}
+
+/* 마우스 오버 시 핫핑크로 변경 */
+.menu-column:hover .menu-icon,
+.menu-column:hover .main-menu-a {
+  color: var(--red) !important;
+}
+
+/* 드롭다운 박스 스타일 */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  /* 메인 메뉴 바로 아래 배치 */
+  left: 50%;
+  transform: translateX(-50%);
+  /* 가운데 정렬 */
+  background: var(--bg-sub);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 0;
+  width: max-content;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 3000;
+}
+
+/* 서브 메뉴 리스트 (박스 디자인 제거 및 위치 조정) */
+.sub-menu-list {
+  display: none;
+  /* 평소엔 숨김 */
+  position: absolute;
+  top: 100%;
+  /* 부모(menu-column) 바로 아래 시작 */
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* 박스 디자인 제거 */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  /* 위치 및 레이아웃 조정 */
+  flex-direction: column;
+  gap: 8px;
+  /* 항목 간 간격 */
+  margin-top: 15px;
+  /* 헤더 아래로 더 내리기 위해 여백 추가 */
+  padding: 0;
+  width: max-content;
+  z-index: 3001;
+}
+
+/* 마우스 오버 영역 유지를 위한 투명 레이어 */
+.sub-menu-list::before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  /* 위로 더 확장하여 헤더와의 간극 방지 */
+  left: -20px;
+  width: calc(100% + 40px);
+  height: 40px;
+  background: transparent;
+}
+
+.sub-menu-list.visible {
+  display: flex;
+  /* 마우스 오버 시 표시 */
+}
+
+/* 소제목 링크 스타일 */
+.sub-menu-a {
+  display: block;
+  font-size: 14px;
+  color: var(--text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  text-align: center;
+  padding: 6px 12px;
+  /* 패딩을 줄여 텍스트 중심의 깔끔한 배치 */
+  border-radius: 6px;
+  transition: color 0.12s ease;
+}
+
+.sub-menu-a:hover {
+  color: var(--red);
+  background: transparent;
+  /* 호버 시 배경색도 제거 */
+}
+
+.header-bg-panel {
+  position: absolute;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: var(--bg-sub);
+  z-index: 0;
+  transition: height 0.16s ease, box-shadow 0.16s ease;
+}
+
+.header-bg-panel.visible {
+  height: 250px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+#header.role-admin .header-bg-panel.visible {
+  height: 290px;
+}
+
+#header.role-standard .sub-menu-list {
+  gap: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+#header.role-admin .sub-menu-list {
+  gap: 12px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.tag {
+  color: var(--red);
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* 설명문 가로 폭 제한 및 중앙 정렬 */
+.desc {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 4. Buttons */
+.primary,
+.secondary,
+.signup,
+.login-trigger {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap !important;
+  transition: all 0.3s ease;
+}
+
+.primary {
+  background: var(--red);
+  border: none;
+  color: white;
+  margin-right: 10px;
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid var(--text-muted);
+  color: var(--text);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.signup {
+  background: var(--red);
+  color: white;
+  border: 2px solid var(--red);
+}
+
+.signup:hover {
+  background: transparent;
+  color: var(--red);
+}
+
+.login-trigger {
+  background: transparent;
+  color: var(--red);
+  border: 1px solid var(--red);
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.login-trigger:hover {
+  background: var(--red);
+  color: white;
+}
+
+/* 프로세스 섹션과의 연결 여백 */
+.process-section {
+  padding: 100px 20px;
+  /* 고정된 색상(#0d0d0d) 대신 변수를 사용합니다 */
+  background: var(--bg);
+  transition: background 0.3s ease;
+  /* 부드러운 전환을 위해 추가 */
+}
+
+/* 1. 제목 및 설명 중앙 정렬 */
+.section-header {
+  text-align: center;
+  /* 텍스트 중앙 정렬 */
+  margin-bottom: 50px;
+  /* 아래 그리드와의 간격 */
+  width: 100%;
+  /* 부모 너비 전체 사용 */
+  color: var(--text-muted);
+  /* 옅은 회색으로 자동 전환 */
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  /* 제목 크기 */
+  margin-bottom: 15px;
+  /* 제목과 설명 사이 간격 */
+}
+
+.section-header p {
+  color: #888;
+  /* 설명 글자 색상 */
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* 2. 프로세스 아이템 호버 효과 */
+.process-item {
+  background: var(--bg-sub);
+  /* #151515 대신 변수 사용 */
+  color: var(--text);
+  /* 글자색도 변수 사용 */
+  padding: 40px 30px;
+  border-radius: 20px;
+  border: 1px solid var(--chat-border);
+  /* 테두리도 변수 처리 가능 */
+  transition: all 0.3s ease;
+}
+
+/* 마우스를 올렸을 때 (YOLOv8 탐지 박스처럼 변경) */
+.process-item:hover {
+  border-color: var(--red);
+  /* 테두리를 빨간색으로 변경 */
+}
+
+/* (선택 사항) 현재 활성화된 상태 강조 유지 */
+.process-item.active {
+  border-color: var(--red);
+  /* 항상 테두리가 있는 박스 */
+}
+
+.icon-box {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.process-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.process-item p {
+  color: var(--text-muted);
+  /* 설명글 색상도 변수 처리 */
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* 6. User Status (Welcome & Logout) */
+.user-welcome {
+  color: #eee;
+  font-size: 15px;
+  margin-right: 10px;
+}
+
+.user-welcome strong {
+  color: var(--red);
+  font-weight: 700;
+}
+
+.logout-link {
+  font-size: 13px;
+  color: #888;
+  text-decoration: none;
+}
+
+.logout-link:hover {
+  color: #ccc;
+  text-decoration: underline;
+}
+
+/* 7. Chatbot UI */
+/* 챗봇 버튼 — 원형 아이콘 버튼 */
+#chat-bubble {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 72px;
+  height: 72px;
+  background: var(--red);
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#chat-bubble:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(225, 29, 72, 0.55);
+}
+
+#chat-bubble:active {
+  transform: scale(0.95);
+}
+
+/* 챗봇 창 — 등장 시 버튼 근처에서 살짝 떠오르며 페이드 인 */
+#chat-window {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 350px;
+  height: 500px;
+  background: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10000;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  transform-origin: bottom right;
+  animation: chatWindowOpen 0.25s ease-out;
+}
+
+@keyframes chatWindowOpen {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.chat-header {
+  background: var(--red);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+}
+
+.chat-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bot-msg,
+.user-msg {
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 85%;
+  font-size: 13.5px;
+  line-height: 1.5;
+  animation: chatBubbleIn 0.28s ease-out;
+}
+
+@keyframes chatBubbleIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 챗봇 답변 대기 — 통통 튀는 세 점 인디케이터 */
+.typing-dots {
+  display: inline-flex;
+  gap: 4px;
+  padding: 2px 0;
+}
+
+.typing-dots>span {
+  width: 7px;
+  height: 7px;
+  background: currentColor;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: typingDot 1.2s infinite ease-in-out;
+}
+
+.typing-dots>span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dots>span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingDot {
+
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+
+  30% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+.msg-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.msg-wrapper.user {
+  justify-content: flex-end;
+}
+
+.msg-wrapper.bot {
+  justify-content: flex-start;
+}
+
+.chat-time {
+  font-size: 10px;
+  color: #888;
+  min-width: fit-content;
+}
+
+.chat-input-area {
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input-area input {
+  flex: 1;
+  background: var(--chat-input-bg);
+  border: 1px solid #444;
+  color: var(--text);
+  padding: 10px 15px;
+  border-radius: 25px;
+  outline: none;
+}
+
+.chat-input-area input:focus {
+  border-color: var(--red);
+}
+
+.chat-input-area button {
+  background: var(--red);
+  color: white;
+  border: none;
+  padding: 0 15px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* .hidden { display: none !important; } */
+
+/* 챗봇 모바일 반응형 */
+@media (max-width: 480px) {
+  #chat-bubble {
+    width: 56px;
+    height: 56px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  #chat-window {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    transform-origin: bottom center;
+  }
+
+  #chat-messages {
+    max-height: none !important;
+    flex: 1;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  #chat-bubble {
+    width: 60px;
+    height: 60px;
+    bottom: 24px;
+    right: 24px;
+  }
+
+  #chat-window {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    border-radius: 20px 20px 0 0;
+    transform-origin: bottom center;
+  }
+
+  #chat-messages {
+    max-height: none !important;
+    flex: 1;
+  }
+}
+
+/* 8. Responsive */
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-left h1 {
+    font-size: 60px;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header h2 {
+    font-size: 1.8rem;
+    word-break: keep-all;
+  }
+
+  .section-header p {
+    word-break: keep-all;
+  }
+
+  .process-item p {
+    word-break: keep-all;
+  }
+
+  .theme-toggle-btn {
+    display: none;
+  }
+
+  .user-dropdown {
+    left: auto;
+    right: 0;
+  }
+
+  p, li, label, h1, h2, h3, h4, h5, h6, span, td, th, button, a {
+    word-break: keep-all;
+  }
+}
+
+@media (max-width: 1200px) {
+  .menu {
+    gap: 20px;
+    /* 창이 좁아지면 메뉴 사이 간격을 줄임 */
+    margin-right: 50px;
+    /* 오른쪽 여백도 함께 줄임 */
+  }
+}
+
+/* 기본적으로 모바일 토글 버튼은 숨김 */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.action-btns-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* --- 모바일 반응형 (768px 이하) --- */
+@media (max-width: 768px) {
+
+  /* 1. 메뉴를 화면 전체를 덮는 레이어로 변경 */
+  .menu {
+    /* 1. 화면 오른쪽 또는 왼쪽에서 튀어나오는 사이드바 형태 */
+    position: fixed;
+    top: 0;
+    right: -100%;
+    /* 처음엔 숨김 */
+    width: 280px;
+    /* 적절한 사이드바 너비 */
+    height: 100vh;
+    background-color: var(--bg-sub);
+    /* 배경색 지정으로 겹침 방지 */
+    flex-direction: column;
+    padding: 60px 20px;
+    /* 헤더 높이만큼 위쪽 여백 */
+    transition: 0.3s ease-in-out;
+    z-index: 1000;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    /* none 대신 위치값으로 조절 */
+  }
+
+  /* 메뉴 활성화 시 노출 */
+  .menu.active {
+    right: 0;
+    /* 활성화 시 화면 안으로 들어옴 */
+  }
+
+  .actions .action-item-group:nth-child(1),
+  .actions .action-item-group:nth-child(2) {
+    display: none !important;
+    /* 복잡한 아이콘은 사이드바 내부로 옮기거나 숨김 */
+  }
+
+  /* 2. 모바일에서 메뉴 열릴 때 컨텐츠 겹침 방지 */
+  .menu-column {
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    /* 구분선 추가 */
+    padding-bottom: 10px;
+  }
+
+  /* 3. 하위 메뉴 스타일 (모바일 전용) */
+  .sub-menu-list {
+    position: static !important;
+    /* PC의 absolute 해제 */
+    box-shadow: none !important;
+    padding-left: 20px !important;
+    margin-top: 10px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    /* 👈 모바일에서는 항상 보이도록 */
+    background: #f9f9f9;
+    /* 하위 메뉴임을 알 수 있게 배경 차이 둠 */
+  }
+
+  .main-menu-a {
+    padding: 15px 0;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  /* 로그인 버튼과 테마 버튼이 나란히 나오도록 */
+  .login-trigger {
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* ==========================================
+   9. 시스템 전역 에러 페이지 스타일 (Road A Eye)
+   ========================================== */
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 20px;
+  background: var(--bg);
+  /* globals.css의 전체 배경 변수 연동 */
+  transition: background 0.3s ease;
+}
+
+.error-box {
+  background-color: var(--bg-sub);
+  /* 다크/라이트 자동 전환 카드 배경 */
+  border: 1px solid var(--border-color);
+  /* 다크/라이트 자동 전환 테두리 */
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.error-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(225, 29, 72, 0.1);
+  /* 레드 포인트 alpha */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+}
+
+.error-icon-red {
+  color: var(--red);
+  /* globals.css의 메인 레드 컬러(#e11d48) 연동 */
+}
+
+.error-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  /* 다크모드 시 흰색, 라이트모드 시 검은색 자동 전환 */
+  margin-bottom: 12px;
+}
+
+.error-description {
+  font-size: 15px;
+  color: var(--text-muted);
+  /* 옅은 회색 자동 전환 */
+  line-height: 1.6;
+  margin-bottom: 30px;
+  word-break: keep-all;
+}
+
+.error-btn-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* 기존 글로벌 버튼 스타일(.primary, .secondary)을 확장하거나 전용 스타일 부여 */
+.error-btn-retry {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  background: var(--red);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s;
+}
+
+.error-btn-retry:hover {
+  opacity: 0.9;
+}
+
+.error-btn-home {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid var(--text-muted);
+  background: transparent;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.error-btn-home:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 에러 상세 정보 스타일 */
+.error-details {
+  text-align: left;
+  background: rgba(225, 29, 72, 0.03);
+  border-left: 3px solid var(--red);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.error-id {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 12px 0 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+  word-break: break-all;
+}
+
+.error-id code {
+  background: var(--bg);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  color: var(--red);
+  font-weight: 600;
+}
+
+.error-hint {
+  font-size: 13px;
+  color: var(--red);
+  margin: 8px 0 0 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-color);
+  font-style: italic;
+}
+
+/* ======== Quill 에디터 다크 모드 스타일 ======== */
+[data-theme='dark'] .ql-container {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+[data-theme='dark'] .ql-editor {
+  background: #1a1a1a;
+  color: #fff;
+  min-height: 300px;
+}
+
+[data-theme='dark'] .ql-editor.ql-blank::before {
+  color: #888;
+}
+
+[data-theme='dark'] .ql-toolbar {
+  background: #222;
+  border: 1px solid #333;
+}
+
+[data-theme='dark'] .ql-toolbar.ql-snow button,
+[data-theme='dark'] .ql-toolbar.ql-snow button:hover,
+[data-theme='dark'] .ql-toolbar.ql-snow button.ql-active {
+  color: #ddd;
+  fill: #ddd;
+}
+
+[data-theme='dark'] .ql-toolbar.ql-snow button:hover,
+[data-theme='dark'] .ql-toolbar.ql-snow button.ql-active {
+  color: #e11d48;
+  fill: #e11d48;
+}
+
+[data-theme='dark'] .ql-snow.ql-toolbar button:hover,
+[data-theme='dark'] .ql-snow.ql-toolbar button.ql-active {
+  color: #e11d48;
+}
+
+[data-theme='dark'] .ql-stroke {
+  stroke: #ddd;
+}
+
+[data-theme='dark'] .ql-stroke.ql-fill {
+  fill: #ddd;
+}
+
+[data-theme='dark'] .ql-fill {
+  fill: #ddd;
+}
+
+/* ── 페이지 전환 애니메이션 ── */
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition-wrap {
+  animation: pageIn 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
