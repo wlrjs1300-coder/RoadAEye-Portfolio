@@ -27,7 +27,7 @@ export default function AdminMainPage() {
   }, [router]);
 
   // 관리자가 속한 회사의 데이터 예시
-  const companyInfo = { name: "A 물류센터", manager: "김사브리나" };
+  const companyInfo = { name: "A 물류센터", manager: "팀원 C" };
 
   return (
     <div className={styles.container}>

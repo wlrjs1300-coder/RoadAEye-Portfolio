@@ -11,7 +11,7 @@ export default function AboutInfoPage() {
         <h1>개발 정보</h1>
         <p>고속도로 CCTV AI 위험차량 감지 시스템 (MBC 아카데미 AI-X 3기 최종 프로젝트)</p>
         <p>4개 서버 분산 구조: Front(localhost) / Back(localhost) / AI(localhost) / DB(localhost)</p>
-        <p>조장 노형래 | 부조장 이지건 | 조원 임효정, 김사브리나, 심유경</p>
+        <p>조장 팀원 A | 부조장 이지건 | 조원 팀원 B, 팀원 C, 팀원 D</p>
       </header>
 
       {/* 1. 시스템 아키텍처 */}
@@ -95,7 +95,7 @@ export default function AboutInfoPage() {
         <div className={styles.teamGrid5}>
           <div className={styles.dummyMemberCard}>
             <strong>PM / DB</strong>
-            <p>노형래</p>
+            <p>팀원 A</p>
             <span>프로젝트 총괄 · 기획 · 발표</span>
           </div>
           <div className={styles.dummyMemberCard}>
@@ -105,17 +105,17 @@ export default function AboutInfoPage() {
           </div>
           <div className={styles.dummyMemberCard}>
             <strong>AI Engineer</strong>
-            <p>임효정</p>
+            <p>팀원 B</p>
             <span>데이터 수집 · 모델 검증</span>
           </div>
           <div className={styles.dummyMemberCard}>
             <strong>Frontend Lead</strong>
-            <p>김사브리나</p>
+            <p>팀원 C</p>
             <span>Next.js UI · 대시보드 개발</span>
           </div>
           <div className={styles.dummyMemberCard}>
             <strong>Backend</strong>
-            <p>심유경</p>
+            <p>팀원 D</p>
             <span>FastAPI · DB 설계 · 인증</span>
           </div>
         </div>

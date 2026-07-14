@@ -601,13 +601,13 @@
         </div>
         <div class="arch-arrow">⟷</div>
         <div class="arch-node node-front">
-          <div class="node-ip">192.168.0.248</div>
+          <div class="node-ip">192.168.0.103</div>
           <div class="node-name">🖥 Front Server</div>
           <div class="node-role">React 프론트엔드</div>
         </div>
         <div class="arch-arrow">⟷</div>
         <div class="arch-node node-api">
-          <div class="node-ip">192.168.0.247 (VIP .251)</div>
+          <div class="node-ip">192.168.0.102 (VIP .201)</div>
           <div class="node-name">⚙ API Server</div>
           <div class="node-role">FastAPI 백엔드</div>
         </div>
@@ -618,19 +618,19 @@
 
       <div class="arch-row">
         <div class="arch-node node-ai">
-          <div class="node-ip">192.168.0.246 (VIP .250)</div>
+          <div class="node-ip">192.168.0.101 (VIP .200)</div>
           <div class="node-name">🤖 AI Server</div>
           <div class="node-role">OpenCV + AI Model</div>
         </div>
         <div class="arch-arrow">→</div>
         <div class="arch-node node-api">
-          <div class="node-ip">192.168.0.247</div>
+          <div class="node-ip">192.168.0.102</div>
           <div class="node-name">⚙ API Server</div>
           <div class="node-role">감지 데이터 수신</div>
         </div>
         <div class="arch-arrow">⟷</div>
         <div class="arch-node node-db">
-          <div class="node-ip">192.168.0.249</div>
+          <div class="node-ip">192.168.0.104</div>
           <div class="node-name">🗄 DB Server</div>
           <div class="node-role">MySQL Failover</div>
         </div>
@@ -647,7 +647,7 @@
         </div>
         <div class="arch-arrow">→</div>
         <div class="arch-node node-api">
-          <div class="node-ip">192.168.0.247</div>
+          <div class="node-ip">192.168.0.102</div>
           <div class="node-name">⚙ API Server</div>
           <div class="node-role">CCTV 동기화</div>
         </div>
@@ -663,46 +663,46 @@
     <!-- 서버 카드 -->
     <div class="server-cards">
       <div class="server-card node-ai">
-        <div class="sc-ip">192.168.0.246</div>
+        <div class="sc-ip">192.168.0.101</div>
         <div class="sc-name">🤖 AI Server</div>
         <div class="sc-role">이상물체 탐지 · OpenCV 영상 분석</div>
         <div class="sc-specs">
           CPU: Intel i7-6700<br>
           RAM: 2.9GB · SSD 97GB<br>
-          VIP: 192.168.0.250 (ai_db Primary)<br>
-          계정: ai4jo2
+          VIP: 192.168.0.200 (ai_db Primary)<br>
+          계정: ai-user
         </div>
       </div>
       <div class="server-card node-api">
-        <div class="sc-ip">192.168.0.247</div>
+        <div class="sc-ip">192.168.0.102</div>
         <div class="sc-name">⚙ API Server</div>
         <div class="sc-role">FastAPI 백엔드 · CCTV 스트리밍</div>
         <div class="sc-specs">
           CPU: Intel i7-6700<br>
           RAM: 1.9GB · SSD 118GB<br>
-          VIP: 192.168.0.251 (member/board/chat DB Primary)<br>
-          계정: back4jo2
+          VIP: 192.168.0.201 (member/board/chat DB Primary)<br>
+          계정: backend-user
         </div>
       </div>
       <div class="server-card node-front">
-        <div class="sc-ip">192.168.0.248</div>
+        <div class="sc-ip">192.168.0.103</div>
         <div class="sc-name">🖥 Front Server</div>
         <div class="sc-role">React 프론트엔드 · 관제 대시보드</div>
         <div class="sc-specs">
           CPU: Intel i7-6700<br>
           RAM: 3.8GB · SSD 97GB<br>
-          계정: front4jo2
+          계정: frontend-user
         </div>
       </div>
       <div class="server-card node-db">
-        <div class="sc-ip">192.168.0.249</div>
+        <div class="sc-ip">192.168.0.104</div>
         <div class="sc-name">🗄 DB Server</div>
         <div class="sc-role">MySQL Failover · 전체 DB 장애 대비</div>
         <div class="sc-specs">
           CPU: Intel i7-6700<br>
           RAM: 1.9GB · SSD 98GB<br>
-          VIP .251 / .250 장애 시 자동 인계<br>
-          계정: db4jo
+          VIP .201 / .200 장애 시 자동 인계<br>
+          계정: db-user
         </div>
       </div>
     </div>
@@ -711,7 +711,7 @@
     <h3 style="font-size:1rem;font-weight:700;color:var(--gray-600);margin:2.5rem 0 0.5rem;">DB 이중화 구조 (Keepalived VRRP)</h3>
     <p style="font-size:0.85rem;color:var(--gray-400);margin-bottom:1.25rem;">
       VIP(Floating IP)는 게이트웨이가 아닌 <strong style="color:var(--gray-600);">같은 네트워크 안에서 서버 간에 이동하는 HA용 IP</strong>입니다.
-      Keepalived가 2초마다 MySQL 상태를 체크하여 장애 감지 시 VIP를 자동으로 249(DB Server)로 이전합니다.
+      Keepalived가 2초마다 MySQL 상태를 체크하여 장애 감지 시 VIP를 자동으로 104(DB Server)로 이전합니다.
     </p>
     <div style="border:1.5px solid var(--gray-200);border-radius:1.25rem;overflow:hidden;">
 
@@ -751,17 +751,17 @@
       </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1.5px solid var(--gray-200);">
-        <!-- VIP .251 -->
+        <!-- VIP .201 -->
         <div style="padding:1.5rem 2rem;border-right:1.5px solid var(--gray-200);">
           <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
-            <span style="background:#dbeafe;color:#1d4ed8;font-size:0.75rem;font-weight:700;padding:0.25rem 0.75rem;border-radius:999px;font-family:monospace;">Floating IP 192.168.0.251</span>
+            <span style="background:#dbeafe;color:#1d4ed8;font-size:0.75rem;font-weight:700;padding:0.25rem 0.75rem;border-radius:999px;font-family:monospace;">Floating IP 192.168.0.201</span>
           </div>
           <div style="font-size:0.8rem;color:var(--gray-600);margin-bottom:1rem;">담당: <strong>member_db · board_db · chat_db</strong></div>
           <div style="display:flex;align-items:stretch;gap:0.75rem;">
             <div style="flex:1;background:#eff6ff;border:1.5px solid #93c5fd;border-radius:0.75rem;padding:0.75rem;">
               <div style="font-size:0.7rem;font-weight:700;color:#1e40af;margin-bottom:0.25rem;">MASTER (priority 100)</div>
-              <div style="font-size:0.9rem;font-weight:800;color:#1d4ed8;">247 API Server</div>
-              <div style="font-size:0.72rem;color:#3b82f6;margin-top:0.25rem;">NIC에 .251 직접 바인딩<br>MySQL 정상 시 VIP 보유</div>
+              <div style="font-size:0.9rem;font-weight:800;color:#1d4ed8;">102 API Server</div>
+              <div style="font-size:0.72rem;color:#3b82f6;margin-top:0.25rem;">NIC에 .201 직접 바인딩<br>MySQL 정상 시 VIP 보유</div>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.2rem;color:var(--gray-400);font-size:0.72rem;font-weight:600;text-align:center;">
               <span>MySQL</span>
@@ -770,22 +770,22 @@
             </div>
             <div style="flex:1;background:#fff7ed;border:1.5px dashed #fdba74;border-radius:0.75rem;padding:0.75rem;">
               <div style="font-size:0.7rem;font-weight:700;color:#9a3412;margin-bottom:0.25rem;">BACKUP → MASTER 승격</div>
-              <div style="font-size:0.9rem;font-weight:800;color:#c2410c;">249 DB Server</div>
-              <div style="font-size:0.72rem;color:#ea580c;margin-top:0.25rem;">.251 NIC로 자동 이전<br>무중단 DB 접속 유지</div>
+              <div style="font-size:0.9rem;font-weight:800;color:#c2410c;">104 DB Server</div>
+              <div style="font-size:0.72rem;color:#ea580c;margin-top:0.25rem;">.201 NIC로 자동 이전<br>무중단 DB 접속 유지</div>
             </div>
           </div>
         </div>
-        <!-- VIP .250 -->
+        <!-- VIP .200 -->
         <div style="padding:1.5rem 2rem;">
           <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
-            <span style="background:#dcfce7;color:#15803d;font-size:0.75rem;font-weight:700;padding:0.25rem 0.75rem;border-radius:999px;font-family:monospace;">Floating IP 192.168.0.250</span>
+            <span style="background:#dcfce7;color:#15803d;font-size:0.75rem;font-weight:700;padding:0.25rem 0.75rem;border-radius:999px;font-family:monospace;">Floating IP 192.168.0.200</span>
           </div>
           <div style="font-size:0.8rem;color:var(--gray-600);margin-bottom:1rem;">담당: <strong>ai_db</strong></div>
           <div style="display:flex;align-items:stretch;gap:0.75rem;">
             <div style="flex:1;background:#f0fdf4;border:1.5px solid #86efac;border-radius:0.75rem;padding:0.75rem;">
               <div style="font-size:0.7rem;font-weight:700;color:#166534;margin-bottom:0.25rem;">MASTER (priority 100)</div>
-              <div style="font-size:0.9rem;font-weight:800;color:#15803d;">246 AI Server</div>
-              <div style="font-size:0.72rem;color:#16a34a;margin-top:0.25rem;">NIC에 .250 직접 바인딩<br>MySQL 정상 시 VIP 보유</div>
+              <div style="font-size:0.9rem;font-weight:800;color:#15803d;">101 AI Server</div>
+              <div style="font-size:0.72rem;color:#16a34a;margin-top:0.25rem;">NIC에 .200 직접 바인딩<br>MySQL 정상 시 VIP 보유</div>
             </div>
             <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.2rem;color:var(--gray-400);font-size:0.72rem;font-weight:600;text-align:center;">
               <span>MySQL</span>
@@ -794,8 +794,8 @@
             </div>
             <div style="flex:1;background:#fff7ed;border:1.5px dashed #fdba74;border-radius:0.75rem;padding:0.75rem;">
               <div style="font-size:0.7rem;font-weight:700;color:#9a3412;margin-bottom:0.25rem;">BACKUP → MASTER 승격</div>
-              <div style="font-size:0.9rem;font-weight:800;color:#c2410c;">249 DB Server</div>
-              <div style="font-size:0.72rem;color:#ea580c;margin-top:0.25rem;">.250 NIC로 자동 이전<br>무중단 DB 접속 유지</div>
+              <div style="font-size:0.9rem;font-weight:800;color:#c2410c;">104 DB Server</div>
+              <div style="font-size:0.72rem;color:#ea580c;margin-top:0.25rem;">.200 NIC로 자동 이전<br>무중단 DB 접속 유지</div>
             </div>
           </div>
         </div>
@@ -842,7 +842,7 @@
       <div style="display:flex;align-items:center;gap:1.5rem;padding:1.25rem 2rem;background:#fdf4ff;border-bottom:1.5px solid var(--gray-200);">
         <div style="font-size:1.5rem;width:44px;text-align:center;">⚛</div>
         <div style="flex:1;">
-          <div style="font-weight:800;color:#6b21a8;font-size:0.95rem;">Client Layer — React (192.168.0.248)</div>
+          <div style="font-weight:800;color:#6b21a8;font-size:0.95rem;">Client Layer — React (192.168.0.103)</div>
           <div style="font-size:0.8rem;color:#9333ea;margin-top:0.2rem;">관제 대시보드 UI · CCTV 스트리밍 화면 · 알람 수신</div>
         </div>
         <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
@@ -909,7 +909,7 @@
       <div style="display:flex;align-items:center;gap:1.5rem;padding:1.25rem 2rem;background:#fff7ed;">
         <div style="font-size:1.5rem;width:44px;text-align:center;">🗄</div>
         <div style="flex:1;">
-          <div style="font-weight:800;color:#9a3412;font-size:0.95rem;">Database — MySQL (192.168.0.249)</div>
+          <div style="font-weight:800;color:#9a3412;font-size:0.95rem;">Database — MySQL (192.168.0.104)</div>
           <div style="font-size:0.8rem;color:#ea580c;margin-top:0.2rem;">road_a_eye DB · 서버 시작 시 create_all 자동 생성 · 금지 클래스 자동 시딩</div>
         </div>
         <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
@@ -931,7 +931,7 @@
           <div style="font-size:1.75rem;margin-bottom:0.5rem;">🎥</div>
           <div style="font-weight:800;font-size:0.85rem;color:#166534;">CCTV 영상</div>
           <div style="font-size:0.75rem;color:#16a34a;margin-top:0.3rem;">RTSP / HTTP<br>스트림 수신</div>
-          <div style="margin-top:0.75rem;font-size:0.7rem;background:#dcfce7;color:#15803d;padding:0.2rem 0.5rem;border-radius:6px;font-weight:600;">AI Server<br>246</div>
+          <div style="margin-top:0.75rem;font-size:0.7rem;background:#dcfce7;color:#15803d;padding:0.2rem 0.5rem;border-radius:6px;font-weight:600;">AI Server<br>101</div>
         </div>
 
         <div style="display:flex;align-items:center;padding:0 0.25rem;background:var(--gray-50);color:var(--gray-400);font-size:1rem;">→</div>
@@ -940,7 +940,7 @@
           <div style="font-size:1.75rem;margin-bottom:0.5rem;">🧠</div>
           <div style="font-weight:800;font-size:0.85rem;color:#166534;">AI 분석</div>
           <div style="font-size:0.75rem;color:#16a34a;margin-top:0.3rem;">OpenCV 프레임<br>이상물체 분류</div>
-          <div style="margin-top:0.75rem;font-size:0.7rem;background:#dcfce7;color:#15803d;padding:0.2rem 0.5rem;border-radius:6px;font-weight:600;">AI Model<br>246</div>
+          <div style="margin-top:0.75rem;font-size:0.7rem;background:#dcfce7;color:#15803d;padding:0.2rem 0.5rem;border-radius:6px;font-weight:600;">AI Model<br>101</div>
         </div>
 
         <div style="display:flex;align-items:center;padding:0 0.25rem;background:var(--gray-50);color:var(--gray-400);font-size:1rem;">→</div>
@@ -949,7 +949,7 @@
           <div style="font-size:1.75rem;margin-bottom:0.5rem;">📮</div>
           <div style="font-weight:800;font-size:0.85rem;color:#1e40af;">감지 전송</div>
           <div style="font-size:0.75rem;color:#3b82f6;margin-top:0.3rem;">POST /cctv/detections<br>이미지 + 메타데이터</div>
-          <div style="margin-top:0.75rem;font-size:0.7rem;background:#dbeafe;color:#1d4ed8;padding:0.2rem 0.5rem;border-radius:6px;font-weight:600;">API Server<br>247</div>
+          <div style="margin-top:0.75rem;font-size:0.7rem;background:#dbeafe;color:#1d4ed8;padding:0.2rem 0.5rem;border-radius:6px;font-weight:600;">API Server<br>102</div>
         </div>
 
         <div style="display:flex;align-items:center;padding:0 0.25rem;background:var(--gray-50);color:var(--gray-400);font-size:1rem;">→</div>
@@ -958,7 +958,7 @@
           <div style="font-size:1.75rem;margin-bottom:0.5rem;">🗄</div>
           <div style="font-weight:800;font-size:0.85rem;color:#9a3412;">DB 저장</div>
           <div style="font-size:0.75rem;color:#ea580c;margin-top:0.3rem;">Detection 테이블<br>이미지 → /captures</div>
-          <div style="margin-top:0.75rem;font-size:0.7rem;background:#ffedd5;color:#c2410c;padding:0.2rem 0.5rem;border-radius:6px;font-weight:600;">DB Server<br>249</div>
+          <div style="margin-top:0.75rem;font-size:0.7rem;background:#ffedd5;color:#c2410c;padding:0.2rem 0.5rem;border-radius:6px;font-weight:600;">DB Server<br>104</div>
         </div>
 
         <div style="display:flex;align-items:center;padding:0 0.25rem;background:var(--gray-50);color:var(--gray-400);font-size:1rem;">→</div>
@@ -967,7 +967,7 @@
           <div style="font-size:1.75rem;margin-bottom:0.5rem;">🚨</div>
           <div style="font-weight:800;font-size:0.85rem;color:#6b21a8;">실시간 알람</div>
           <div style="font-size:0.75rem;color:#9333ea;margin-top:0.3rem;">대시보드 알림<br>이메일 발송</div>
-          <div style="margin-top:0.75rem;font-size:0.7rem;background:#f3e8ff;color:#7c3aed;padding:0.2rem 0.5rem;border-radius:6px;font-weight:600;">Front Server<br>248</div>
+          <div style="margin-top:0.75rem;font-size:0.7rem;background:#f3e8ff;color:#7c3aed;padding:0.2rem 0.5rem;border-radius:6px;font-weight:600;">Front Server<br>103</div>
         </div>
 
         <div style="display:flex;align-items:center;padding:0 0.25rem;background:var(--gray-50);color:var(--gray-400);font-size:1rem;">→</div>

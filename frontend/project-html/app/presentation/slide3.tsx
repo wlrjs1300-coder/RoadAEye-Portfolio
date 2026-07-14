@@ -15,7 +15,7 @@ type Member = {
   detailTitle?: string;
 };
 
-// 심유경 — 백엔드 작업 내역 (원문 그대로)
+// 팀원 D — 백엔드 작업 내역 (원문 그대로)
 const G1 = 'FastAPI 백엔드 전체 구축';
 const backendDetail: DetailCard[] = [
   { badge: '1-1', group: G1, title: '아키텍처', items: [
@@ -117,7 +117,7 @@ const backendDetail: DetailCard[] = [
   ] },
 ];
 
-// 김사브리나 — 프론트엔드 작업 내역 (원문 그대로)
+// 팀원 C — 프론트엔드 작업 내역 (원문 그대로)
 const FA = '프론트 작업 내역';
 const FB = '백엔드 연결 운영 방식';
 const frontDetail: DetailCard[] = [
@@ -157,7 +157,7 @@ const frontDetail: DetailCard[] = [
   ] },
 ];
 
-// 임효정 — YOLO 객체 탐지 작업 내역 (원문 그대로)
+// 팀원 B — YOLO 객체 탐지 작업 내역 (원문 그대로)
 const yoloDetail: DetailCard[] = [
   { badge: '1', title: '데이터 수집', items: [
     '전동킥보드', '경운기(Cultivator)', '굴착기(Excavator)', '리어카(Rear Car)', '전동휠체어(Wheelchair)',
@@ -245,6 +245,7 @@ const aiModelDetail: DetailCard[] = [
     '학습 시간 정상화 : 2차 약 750분 → 3차 약 95분으로 개선',
     'mAP, Precision, Recall, Loss 지표를 기준으로 성능 안정성 검증',
     '최종 권장 모델 : yolov11m_v3/weights/best.pt',
+    '※ 위 수치는 프로젝트 학습 당시 측정 결과이며, 학습 데이터셋·가중치·학습 스크립트는 본 저장소에 포함되어 있지 않음',
   ] },
   { badge: '3-1', group: K3, title: 'Keras 모델 연동', items: [
     'FastAPI 기반 AI 서버에 Keras 추론 API 구성',
@@ -287,7 +288,7 @@ const aiModelDetail: DetailCard[] = [
   ] },
 ];
 
-// 노형래 — DB · 인프라 작업 내역 (4개 서버 실측 기반)
+// 팀원 A — DB · 인프라 작업 내역 (4개 서버 실측 기반)
 const dbDetail: DetailCard[] = [
   { badge: '1', title: 'DB 설계 · 구축', items: [
     '4개 데이터베이스 설계 : member_db · ai_db · board_db · chat_db',
@@ -331,11 +332,11 @@ export default function Chapter1() {
   const [open, setOpen] = useState<string | null>(null);
 
   const members: Member[] = [
-    { name: '노형래', role: 'Leader · DB', img: '/members/노형래 이모지.png', accent: '#c0392b', tags: ['MySQL', 'Keepalived', 'Replication'], desc: 'DB 설계 · 이중화 · 인프라 총괄', detail: dbDetail, detailTitle: 'DB · 인프라 작업 내역' },
+    { name: '팀원 A', role: 'Leader · DB', img: '/members/팀원A.png', accent: '#c0392b', tags: ['MySQL', 'Keepalived', 'Replication'], desc: 'DB 설계 · 이중화 · 인프라 총괄', detail: dbDetail, detailTitle: 'DB · 인프라 작업 내역' },
     { name: '이지건', role: 'Keras-AI', img: '/members/이지건이모지.png', accent: '#2e7d8a', tags: ['Keras', 'TensorFlow', 'Deep Learning'], desc: 'Keras 정확도 99.11% · Recall 100%', detail: aiModelDetail, detailTitle: 'AI 모델 작업 내역' },
-    { name: '임효정', role: 'YOLO-AI', img: '/members/임효정이모지.png', accent: '#2e7d5b', tags: ['YOLOv8s', 'ITS API', 'Stream'], desc: '객체 탐지 모델 · mAP50 94.8%', detail: yoloDetail, detailTitle: 'YOLO 객체 탐지 작업 내역' },
-    { name: '김사브리나', role: 'Front-end', img: '/members/김사브리나이모지.png', accent: '#7b5ea7', tags: ['Next.js', 'Tailwind', 'recharts'], desc: '33개 페이지 · 9개 컴포넌트 구현', detail: frontDetail, detailTitle: '프론트엔드 작업 내역' },
-    { name: '심유경', role: 'Back-end', img: '/members/심유경이모지.png', accent: '#c47a1a', tags: ['FastAPI', 'JWT', 'SQLAlchemy'], desc: '8개 API 라우터 · 4개 DB 연동', detail: backendDetail, detailTitle: '백엔드 작업 내역' },
+    { name: '팀원 B', role: 'YOLO-AI', img: '/members/팀원B.png', accent: '#2e7d5b', tags: ['YOLOv8s', 'ITS API', 'Stream'], desc: '객체 탐지 모델 · mAP50 94.8%', detail: yoloDetail, detailTitle: 'YOLO 객체 탐지 작업 내역' },
+    { name: '팀원 C', role: 'Front-end', img: '/members/팀원C.png', accent: '#7b5ea7', tags: ['Next.js', 'Tailwind', 'recharts'], desc: '33개 페이지 · 9개 컴포넌트 구현', detail: frontDetail, detailTitle: '프론트엔드 작업 내역' },
+    { name: '팀원 D', role: 'Back-end', img: '/members/팀원D.png', accent: '#c47a1a', tags: ['FastAPI', 'JWT', 'SQLAlchemy'], desc: '8개 API 라우터 · 4개 DB 연동', detail: backendDetail, detailTitle: '백엔드 작업 내역' },
   ];
 
   const active = members.find((m) => m.name === open && m.detail);

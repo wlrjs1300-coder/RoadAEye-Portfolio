@@ -143,7 +143,7 @@ export default function Cover() {
           <div style={{ display: 'flex', justifyContent: 'space-between', gap: 24, marginBottom: 8 }}>
             <span>
               <span className={styles.role} style={{ minWidth: 0, fontSize: 18 }}>조장</span>
-              <span className={styles.name} style={{ fontSize: 22, fontWeight: 800, color: '#1f2d3d' }}>노형래</span>
+              <span className={styles.name} style={{ fontSize: 22, fontWeight: 800, color: '#1f2d3d' }}>팀원 A</span>
             </span>
             <span>
               <span className={styles.role} style={{ minWidth: 0, fontSize: 18 }}>부조장</span>
@@ -152,7 +152,7 @@ export default function Cover() {
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span className={styles.role} style={{ minWidth: 0, fontSize: 18 }}>조원</span>
-            <span className={styles.name} style={{ fontSize: 22, fontWeight: 800, color: '#1f2d3d' }}>임효정 | 김사브리나 | 심유경</span>
+            <span className={styles.name} style={{ fontSize: 22, fontWeight: 800, color: '#1f2d3d' }}>팀원 B | 팀원 C | 팀원 D</span>
           </div>
         </div>
       </div>

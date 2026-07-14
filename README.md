@@ -18,10 +18,12 @@
 | 구분 | 내용 |
 |---|---|
 | 모델 학습 | Keras 기반 객체 분류 모델 반복 실험 및 성능 개선 |
-| 모델 학습 | YOLOv11m 객체 탐지 모델 학습 및 성능 평가 |
+| 모델 학습 | YOLOv11m 모델 학습·평가 및 추론 서버 연동 |
 | 서버 구축 | AI 추론 서버 구축 (FastAPI) |
 | 연동 | AI 모델과 백엔드 서버 연동 |
 | 분석 | 모델별 성능 및 추론 결과 비교 분석 |
+
+YOLOv11m 모델은 별도 학습 환경에서 학습·평가했으며, 본 저장소에는 데이터셋과 학습 가중치를 제외하고 추론 및 AI 서버 연동 코드(`app/modules/yolo/`, `app/modules/its/pipeline.py`)를 공개했습니다. 학습 스크립트와 로그는 포함되어 있지 않아 현재 저장소만으로 학습 과정 전체를 재현할 수는 없습니다. Keras 분류 모델은 학습 스크립트(`train_keras_v16.py`, `train_keras_gate_v15.py`)를 포함하고 있습니다.
 
 ---
 
@@ -101,6 +103,7 @@ RoadAEye/
 │   │   ├── train_keras_gate_v15.py
 │   │   ├── train_keras_v16.py
 │   │   ├── upload_server.py
+│   │   ├── .env.example
 │   │   └── requirements.txt
 │   └── highway-chatbot-server/     # AI 챗봇 서버 (LLM · SSE)
 │       ├── main.py
@@ -141,7 +144,11 @@ RoadAEye/
 공개 예시 환경변수 파일이 제공되는 서비스는 해당 파일을 참고하여 로컬 `.env`를 작성해야 합니다. 실제 인증정보는 저장소에 포함되어 있지 않습니다.
 
 ```bash
-# 예시 (highway-chatbot-server)
+# road-ai
+cp ai/road-ai/.env.example \
+   ai/road-ai/.env
+
+# highway-chatbot-server
 cp ai/highway-chatbot-server/env.example \
    ai/highway-chatbot-server/.env
 ```
@@ -197,7 +204,7 @@ npm run dev
 | 팀원 이미지, 캡처 영상 등 검토 미완료 미디어 | 미포함 |
 | 모델 가중치 파일 | `.gitignore` 제외 (별도 관리) |
 
-인증정보 설정 예시는 `env.example` 파일이 제공되는 서비스 디렉터리를 참고하세요.
+인증정보 설정 예시는 각 서비스 디렉터리의 `.env.example`(road-ai) 또는 `env.example`(highway-chatbot-server, backend/FastAPI) 파일을 참고하세요.
 
 ---
 
